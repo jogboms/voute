@@ -3,14 +3,16 @@ import 'dart:convert' show json;
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-// TODO
-// Should update to AndroidX and add containsKey
 class MkPrefs {
   static Future<SharedPreferences> _prefs;
 
   static Future<SharedPreferences> _getInstance() {
     _prefs ??= SharedPreferences.getInstance();
     return _prefs;
+  }
+
+  static Future<bool> contains(String key) async {
+    return (await _getInstance()).containsKey(key);
   }
 
   static Future<bool> remove(String key) async {

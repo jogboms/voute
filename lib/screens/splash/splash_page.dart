@@ -18,7 +18,6 @@ class SplashPage extends StatelessWidget {
     this.isFirstTime = false,
   }) : super(key: key);
 
-  // TODO: can do more with this
   final bool isFirstTime;
 
   @override
@@ -76,22 +75,21 @@ class _MainView extends StatelessWidget {
         }
 
         if (viewModel.isLoading || viewModel.config == null) {
-          return Positioned.fill(
-            top: null,
-            child: SafeArea(
-              top: false,
-              child: Padding(
-                padding: EdgeInsets.only(bottom: sh(64)),
-                child: MkLoadingSpinner(
-                  color: MkColors.smokey,
-                ),
+          return SafeArea(
+            top: false,
+            child: Padding(
+              padding: EdgeInsets.only(bottom: sh(64)),
+              child: MkLoadingSpinner(
+                color: MkColors.smokey,
               ),
             ),
           );
         }
 
         return Center(
-          child: const FlutterLogo(),
+          child: FlutterLogo(
+            size: sf(76),
+          ),
         );
       },
     );

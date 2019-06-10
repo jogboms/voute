@@ -9,18 +9,12 @@ dependencies:
   flutter:
     sdk: flutter
   intl: ^0.15.6
-  url_launcher: 4.2.0+3
-  rxdart: ^0.18.0
-  # TODO: blocked by https://github.com/benhurott/flutter-masked-text/pull/32/
-  # flutter_masked_text: ^0.8.0
-  flutter_masked_text:
-    git:
-      url: https://github.com/jogboms/flutter-masked-text.git
-  shared_preferences: ^0.4.3
+  rxdart: ^0.22.0
+  shared_preferences: ^0.5.3
   flutter_spinkit: ^3.0.0
-  get_version: 0.0.8
+  get_version: ^0.1.0
   version: ^1.0.0
-  equatable: ^0.1.10
+  equatable: ^0.2.6
   rebloc: ^0.2.0
   http_middleware:
     git:
@@ -29,12 +23,17 @@ dependencies:
     git:
       url: https://github.com/jogboms/http_logger.git
   provider: ^3.0.0
-  share: ^0.5.3
   injector: ^1.0.6
   built_value: ^6.4.0
   built_collection: ^4.2.0
-  flare_flutter: ^1.5.1
+  url_launcher: ^5.0.3
+  # TODO: blocked by https://github.com/benhurott/flutter-masked-text/pull/32/
+  # flutter_masked_text: ^0.8.0
+  flutter_masked_text:
+    git:
+      url: https://github.com/jogboms/flutter-masked-text.git
   overlay_support: ^0.3.0
+  share: ^0.6.1
 
 dev_dependencies:
   flutter_test:
