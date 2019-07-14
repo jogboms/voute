@@ -18,6 +18,8 @@ const Color kTitleBaseColor = kTextBaseColor;
 const Color kBackgroundBaseColor = Colors.white;
 const Color kAppBarBackgroundColor = Colors.white;
 
+const double kBaseAppBarHeight = 48.0;
+
 const double kBaseScreenHeight = 896.0;
 const double kBaseScreenWidth = 414.0;
 
