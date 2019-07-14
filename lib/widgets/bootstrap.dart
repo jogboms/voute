@@ -48,14 +48,6 @@ class BootstrapModel {
 
 class _BootstrapService {
   static Future<BootstrapModel> init([bool isTestMode = false]) async {
-    if (MkSettings.isMock) {
-      return BootstrapModel(
-        isFirstTime: true,
-        isTestMode: isTestMode,
-        user: null,
-      );
-    }
-
     UserModel user;
     final isFirstTime = await MkSettings.checkIsFirstTimeLogin();
 
@@ -67,6 +59,14 @@ class _BootstrapService {
       }
     } catch (e) {
       MkLogger.d('$e');
+    }
+
+    if (MkSettings.isMock) {
+      return BootstrapModel(
+        isFirstTime: true,
+        isTestMode: isTestMode,
+        user: null,
+      );
     }
 
     return BootstrapModel(

@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 
 class MkColors {
   MkColors._();
-  static const _basePrimary = 0xFF059200;
+  static const _basePrimary = 0xFF26D1F6;
   static const _baseAccent = 0xFFFFB024;
   static const MaterialColor dark = const MaterialColor(
     0xFF444444,
@@ -75,6 +75,6 @@ class MkColors {
   static const Color info = const Color(0xFF2D9CDB);
   static const Color warning = const Color(0xFFF1B61E);
   static const Color gold = const Color(0xFFD58929);
-  static const Color gradient_start = const Color(0xFF8CC63F);
-  static const Color gradient_end = const Color(0xFF009245);
+  static const Color gradient_start = const Color(0xFF14F4F4);
+  static const Color gradient_end = const Color(0xFF26D1F6);
 }

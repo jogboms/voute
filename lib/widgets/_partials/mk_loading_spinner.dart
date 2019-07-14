@@ -14,7 +14,7 @@ class MkLoadingSpinner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // return SpinKitPulse(
-    return SpinKitDoubleBounce(
+    return SpinKitThreeBounce(
       // color: color ?? kPrimaryColor,
       size: size ?? 32.0,
       itemBuilder: (_, int i) {
