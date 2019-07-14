@@ -54,6 +54,7 @@ class MkStyle extends TextStyle {
           textBaseline: TextBaseline.alphabetic,
         );
 
+  static const FontWeight thin = FontWeight.w100;
   static const FontWeight light = FontWeight.w200;
   static const FontWeight regular = FontWeight.w400;
   static const FontWeight medium = FontWeight.w600;
