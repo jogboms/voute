@@ -1,8 +1,9 @@
 import 'dart:async' show Future;
 
-import 'package:voute/rebloc/states/main.dart';
-import 'package:voute/utils/mk_settings.dart';
 import 'package:rebloc/rebloc.dart';
+import 'package:voute/rebloc/states/main.dart';
+import 'package:voute/utils/mk_logger.dart';
+import 'package:voute/utils/mk_settings.dart';
 
 /// Logs each incoming action.
 class LoggerBloc extends SimpleBloc<AppState> {
@@ -13,14 +14,14 @@ class LoggerBloc extends SimpleBloc<AppState> {
     Action action,
   ) async {
     if (!MkSettings.isTesting) {
-      print("{\n$state\n}");
+      MkLogger.d("{\n$state\n}");
     }
     return action;
   }
 
   @override
   Future<Action> middleware(dispatcher, state, action) async {
-    print("[ReBLoC]: ${action.runtimeType}");
+    MkLogger.d("[ReBLoC]: ${action.runtimeType}");
     // return await Future.delayed(Duration.zero, () => action);
     return action;
   }

@@ -9,6 +9,7 @@ import 'package:voute/services/_mocks/config.dart';
 import 'package:voute/services/_mocks/users.dart';
 import 'package:voute/services/config.dart';
 import 'package:voute/services/users.dart';
+import 'package:voute/utils/mk_logger.dart';
 import 'package:voute/utils/mk_remember_me_provider.dart';
 import 'package:voute/utils/mk_settings.dart';
 
@@ -18,6 +19,8 @@ Future<BootstrapModel> bootstrap(
 ]) async {
   MkSettings.environment = env;
   MkSettings.isTestMode = isTestMode;
+
+  MkLogger.init(MkSettings.isDev);
 
   Injector.appInstance
     ..registerSingleton<Users>(
@@ -63,7 +66,7 @@ class _BootstrapService {
         user = await Users.di().fetch(model.id);
       }
     } catch (e) {
-      //
+      MkLogger.d('$e');
     }
 
     return BootstrapModel(

@@ -1,4 +1,3 @@
-import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:voute/utils/mk_screen_util.dart';
 import 'package:voute/utils/mk_theme.dart';
@@ -36,10 +35,7 @@ class SuccessMessageDialog extends StatelessWidget {
                 children: <Widget>[
                   SizedBox.fromSize(
                     size: Size.square(sf(100.0)),
-                    child: FlareActor(
-                      "assets/flare/success.flr",
-                      animation: "Success Outline",
-                    ),
+                    child: Icon(Icons.check),
                   ),
                   if (message != null) ...[
                     SizedBox(height: sh(16.0)),

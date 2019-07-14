@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:voute/constants/mk_constants.dart';
 import 'package:voute/models/user/remember_me.dart';
+import 'package:voute/utils/mk_logger.dart';
 import 'package:voute/utils/mk_prefs.dart';
 import 'package:voute/utils/mk_settings.dart';
 
@@ -14,7 +15,7 @@ class MkRememberMeProvider {
         model = RememberMeModel.fromJson(json);
         MkSettings.tokenKey = model.token;
       }
-      print(['RememberMeModel', json, model]);
+      MkLogger.d('RememberMeModel: ${json.toString()} - ${model.toString()}');
     } on FormatException {
       model = null;
     }

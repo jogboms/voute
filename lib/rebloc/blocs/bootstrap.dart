@@ -1,12 +1,12 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
 import 'package:rebloc/rebloc.dart';
 import 'package:voute/constants/mk_strings.dart';
 import 'package:voute/rebloc/actions/bootstrap.dart';
 import 'package:voute/rebloc/states/bootstrap.dart';
 import 'package:voute/rebloc/states/main.dart';
 import 'package:voute/services/config.dart';
+import 'package:voute/utils/mk_logger.dart';
 import 'package:voute/utils/mk_retry.dart';
 import 'package:voute/utils/mk_settings.dart';
 
@@ -72,7 +72,7 @@ class BootstrapBloc extends SimpleBloc<AppState> {
           ),
         );
       } catch (error) {
-        debugPrint("$error");
+        MkLogger.d("$error");
         dispatcher(
           BootstrapAsyncFailureAction(MkStrings.genericError(error)),
         );
