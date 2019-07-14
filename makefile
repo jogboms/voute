@@ -1,4 +1,4 @@
-clear:
+clean:
 	flutter clean
 
 built_value_build:
