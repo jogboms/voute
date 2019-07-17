@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:voute/constants/mk_colors.dart';
+import 'package:voute/constants/mk_style.dart';
 import 'package:voute/utils/mk_theme.dart';
 import 'package:voute/widgets/_partials/mk_back_button.dart';
 import 'package:voute/widgets/_partials/mk_close_button.dart';
@@ -50,7 +51,12 @@ class MkAppBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: elevation,
       actions: [
         ...actions ?? [],
-        if (useCloseButton) MkCloseButton(color: _style.color),
+        if (useCloseButton)
+          Column(
+            children: <Widget>[
+              MkCloseButton(color: _style.color),
+            ],
+          ),
       ],
       bottom: bottom,
       centerTitle: centerTitle,
@@ -59,6 +65,6 @@ class MkAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Size get preferredSize => Size.fromHeight(
-        kToolbarHeight + (bottom != null ? bottom.preferredSize.height : 0),
+        kBaseAppBarHeight + (bottom != null ? bottom.preferredSize.height : 0),
       );
 }

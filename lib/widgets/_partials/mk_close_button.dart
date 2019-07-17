@@ -1,3 +1,4 @@
+import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:voute/utils/mk_screen_util.dart';
 import 'package:voute/utils/mk_theme.dart';
@@ -17,7 +18,7 @@ class MkCloseButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return MkClearButton(
       child: Icon(
-        Icons.close,
+        FeatherIcons.x,
         color: color ?? MkTheme.of(context).appBarTitle.color,
         size: sf(32),
       ),
