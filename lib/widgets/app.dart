@@ -41,7 +41,7 @@ class _AppState extends State<App> {
 
   @override
   void dispose() {
-    store.dispatcher(const OnDisposeAction());
+    store.dispatch(const OnDisposeAction());
     super.dispose();
   }
 

@@ -9,13 +9,17 @@ dependencies:
   flutter:
     sdk: flutter
   intl: ^0.15.6
-  rxdart: ^0.18.0
+  rxdart: ^0.22.0
   shared_preferences: ^0.5.3
   flutter_spinkit: ^3.0.0
   get_version: ^0.1.0
   version: ^1.0.0
   equatable: ^0.2.6
-  rebloc: ^0.2.0
+  # TODO:
+  # rebloc: ^0.2.0
+  rebloc:
+    git:
+      url: https://github.com/RedBrogdon/rebloc.git
   http_middleware:
     git:
       url: https://github.com/jogboms/http_middleware.git
