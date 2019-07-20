@@ -27,7 +27,7 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var theme = MkTheme.of(context);
+    final MkTheme theme = MkTheme.of(context);
     return MkStatusBar(
       brightness: Brightness.light,
       child: Scaffold(
