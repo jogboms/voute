@@ -8,9 +8,8 @@ import 'package:voute/constants/mk_style.dart';
 import 'package:voute/rebloc/actions/bootstrap.dart';
 import 'package:voute/rebloc/states/main.dart';
 import 'package:voute/rebloc/view_models/bootstrap.dart';
-import 'package:voute/screens/home/home_page.dart';
+import 'package:voute/screens/dashboard/dashboard_page.dart';
 import 'package:voute/utils/mk_linear_gradient.dart';
-import 'package:voute/utils/mk_navigate.dart';
 import 'package:voute/utils/mk_screen_util.dart';
 import 'package:voute/utils/mk_settings.dart';
 import 'package:voute/utils/mk_status_bar.dart';
@@ -109,10 +108,7 @@ class _MainView extends StatelessWidget {
         }
 
         WidgetsBinding.instance.addPostFrameCallback((_) {
-          Navigator.of(context).pushAndRemoveUntil<void>(
-            MkNavigate.fadeIn(HomePage()),
-            (_) => true,
-          );
+          DashboardPage.onNavigate(context, null);
         });
 
         return const SizedBox();
