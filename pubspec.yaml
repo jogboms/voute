@@ -64,6 +64,10 @@ flutter:
     - assets/images/
 
   fonts:
+    - family: OCR A Std
+      fonts:
+        - asset: assets/fonts/OCR A Std Regular.ttf
+          weight: 400
     - family: Montserrat
       fonts:
         - asset: assets/fonts/Montserrat-Thin.ttf
