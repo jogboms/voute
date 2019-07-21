@@ -1,6 +1,8 @@
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:voute/constants/mk_colors.dart';
+import 'package:voute/screens/cards/_partials/card_item.dart';
 import 'package:voute/utils/mk_screen_util.dart';
 import 'package:voute/widgets/_partials/mk_app_bar_alt.dart';
 import 'package:voute/widgets/_partials/mk_icon_button.dart';
@@ -40,6 +42,30 @@ class _HomePageState extends State<HomePage> {
                 onPressed: () {},
               ),
             ],
+          ),
+        ),
+        SliverPadding(
+          padding: EdgeInsets.symmetric(vertical: sh(16)),
+          sliver: SliverList(
+            delegate: SliverChildListDelegate(
+              [
+                SizedBox(
+                  height: sh(kCardItemHeight),
+                  child: Swiper(
+                    viewportFraction: 0.825,
+                    scale: .85,
+                    itemBuilder: (BuildContext context, int index) {
+                      return CardItem(
+                        index: index,
+                        elevation: 16,
+                        type: CardItemType.gradient,
+                      );
+                    },
+                    itemCount: 15,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ],
