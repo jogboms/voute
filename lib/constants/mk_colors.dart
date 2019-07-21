@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 class MkColors {
   MkColors._();
   static const _basePrimary = 0xFF26D1F6;
-  static const _baseAccent = 0xFFFFB024;
+  static const _baseAccent = 0xFF26f6b4;
   static const MaterialColor dark = const MaterialColor(
     0xFF444444,
     const <int, Color>{
@@ -38,31 +38,31 @@ class MkColors {
   static const MaterialColor base_primary = const MaterialColor(
     _basePrimary,
     const <int, Color>{
-      50: const Color(0xFFe7f6e5),
-      100: const Color(0xFFc5e8c0),
-      200: const Color(0xFF9ed997),
-      300: const Color(0xFF75ca6b),
-      400: const Color(0xFF53bf48),
-      500: const Color(0xFF2bb31e),
-      600: const Color(0xFF1ea413),
-      700: const Color(_basePrimary),
-      800: const Color(0xFF008100),
-      900: const Color(0xFF006200),
+      50: const Color(0xFFdff7fe),
+      100: const Color(0xFFaeebfc),
+      200: const Color(0xFF75defa),
+      300: const Color(_basePrimary),
+      400: const Color(0xFF00c6f2),
+      500: const Color(0xFF00bceb),
+      600: const Color(0xFF00acd7),
+      700: const Color(0xFF0097bb),
+      800: const Color(0xFF0084a2),
+      900: const Color(0xFF006174),
     },
   );
   static const MaterialColor base_accent = const MaterialColor(
     _baseAccent,
     const <int, Color>{
-      50: const Color(0xFFfffee8),
-      100: const Color(0xFFfffac4),
-      200: const Color(0xFFfef69c),
-      300: const Color(0xFFfdf274),
-      400: const Color(0xFFfaed52),
-      500: const Color(0xFFf8e830),
-      600: const Color(0xFFffde35),
-      700: const Color(0xFFffc72d),
-      800: const Color(_baseAccent),
-      900: const Color(0xFFfc8513),
+      50: const Color(0xFFd8feed),
+      100: const Color(0xFF9cfad2),
+      200: const Color(_baseAccent),
+      300: const Color(0xFF00ef98),
+      400: const Color(0xFF00e584),
+      500: const Color(0xFF00db70),
+      600: const Color(0xFF00ca64),
+      700: const Color(0xFF00b655),
+      800: const Color(0xFF00a448),
+      900: const Color(0xFF008231),
     },
   );
   static const Color accent = const Color(_baseAccent);

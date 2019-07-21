@@ -48,29 +48,29 @@ class MkStreamBloc<T> implements MkStreamable<StreamState<T>> {
       : assert(skipFirst != null),
         _controller = skipFirst
             ? BehaviorSubject<Future<T>>()
-            : BehaviorSubject<Future<T>>(seedValue: _builder());
+            : BehaviorSubject<Future<T>>.seeded(_builder());
 
   T cachedData;
   bool skipFirst;
   final MkStreamBlocBuilder<T> _builder;
   final Subject<Future<T>> _controller;
-  final _isLoading = BehaviorSubject<bool>(seedValue: true);
-  final _error = BehaviorSubject<dynamic>(seedValue: 0);
+  final _isLoading = BehaviorSubject<bool>.seeded(true);
+  final _error = BehaviorSubject<dynamic>.seeded(0);
 
   @override
   Stream<StreamState<T>> get stream =>
       Observable.combineLatest3<T, bool, dynamic, StreamState<T>>(
         _controller.stream.switchMap(
           (mapper) => Observable.fromFuture(mapper).doOnEach(
-                (_) {
-                  _isLoading.add(false);
-                },
-              ).onErrorReturnWith(
-                (dynamic error) {
-                  _error.add(error);
-                  return null;
-                },
-              ).doOnData((data) => cachedData = data),
+            (_) {
+              _isLoading.add(false);
+            },
+          ).onErrorReturnWith(
+            (dynamic error) {
+              _error.add(error);
+              return null;
+            },
+          ).doOnData((data) => cachedData = data),
         ),
         _isLoading.stream,
         _error.stream,

@@ -1,7 +1,13 @@
+import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:voute/widgets/_partials/mk_app_bar.dart';
+import 'package:voute/constants/mk_colors.dart';
+import 'package:voute/utils/mk_screen_util.dart';
+import 'package:voute/widgets/_partials/mk_app_bar_alt.dart';
+import 'package:voute/widgets/_partials/mk_icon_button.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({Key key}) : super(key: key);
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -9,11 +15,34 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: MkAppBar(
-        title: const Text("Home"),
-      ),
-      body: Material(),
+    return CustomScrollView(
+      physics: const BouncingScrollPhysics(),
+      slivers: <Widget>[
+        MkSliverAppBarAlt(
+          child: Row(
+            children: <Widget>[
+              Expanded(
+                child: TextField(
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(FeatherIcons.search),
+                    suffixIcon: MkIconButton(
+                      icon: FeatherIcons.xCircle,
+                      color: Colors.black12,
+                      onPressed: () {},
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(width: sw(16)),
+              MkIconButton(
+                icon: FeatherIcons.user,
+                fillColor: MkColors.dark.shade50,
+                onPressed: () {},
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
