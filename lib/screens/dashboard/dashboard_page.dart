@@ -115,7 +115,7 @@ class _DashboardPageState extends State<DashboardPage>
         return false;
       },
       child: MkStatusBar(
-        brightness: Brightness.light,
+        brightness: Brightness.dark,
         child: Scaffold(
           resizeToAvoidBottomPadding: false,
           backgroundColor: MkColors.smoke,
