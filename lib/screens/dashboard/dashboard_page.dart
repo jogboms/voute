@@ -16,6 +16,7 @@ import 'package:voute/utils/mk_navigate.dart';
 import 'package:voute/utils/mk_screen_util.dart';
 import 'package:voute/utils/mk_settings.dart';
 import 'package:voute/utils/mk_status_bar.dart';
+import 'package:voute/widgets/_views/keyboard_wrapper_view.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({
@@ -122,7 +123,9 @@ class _DashboardPageState extends State<DashboardPage>
           body: TabBarView(
             controller: _controller,
             physics: const NeverScrollableScrollPhysics(),
-            children: _tabViews,
+            children: _tabViews
+                .map((child) => KeyboardWrapperView(child: child))
+                .toList(),
           ),
           bottomNavigationBar: SizedBox(
             height: ss(56) + MkScreenUtil().safeArea.bottom,

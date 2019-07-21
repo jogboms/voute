@@ -61,8 +61,8 @@ class MkTheme extends InheritedWidget {
   TextStyle get subhead4Medium => subhead4.copyWith(fontWeight: MkStyle.medium);
   TextStyle get headline => _header20Style;
 
-  TextStyle get appBarTitle => display1.copyWith(
-      fontWeight: MkStyle.medium, color: Colors.white, letterSpacing: .35);
+  TextStyle get appBarTitle =>
+      display1.copyWith(fontWeight: MkStyle.medium, letterSpacing: 1.75);
 
   TextStyle get display1 => _text20Style;
   TextStyle get display1Light => display1.copyWith(fontWeight: MkStyle.light);

@@ -1,3 +1,4 @@
+import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:voute/constants/mk_style.dart';
 import 'package:voute/utils/mk_screen_util.dart';
@@ -19,7 +20,12 @@ class _MorePageState extends State<MorePage> {
       physics: const BouncingScrollPhysics(),
       slivers: <Widget>[
         MkSliverAppBarAlt(
-          child: SizedBox(height: kBaseAppBarHeight),
+          child: SizedBox(
+            height: kBaseAppBarHeight,
+            child: Center(
+              child: Text("More", style: MkTheme.of(context).subhead4Medium),
+            ),
+          ),
         ),
         SliverPadding(
           padding: EdgeInsets.symmetric(horizontal: sw(16), vertical: sh(16)),
@@ -58,6 +64,7 @@ class _MenuItem extends StatelessWidget {
         onTap: () {
           //
         },
+        leading: Icon(FeatherIcons.plusSquare),
         title: Text(
           "Item",
           style: theme.subhead3Semi,
