@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:voute/constants/mk_colors.dart';
 import 'package:voute/screens/cards/_partials/card_item.dart';
+import 'package:voute/screens/dashboard/dashboard_page.dart';
 import 'package:voute/screens/people/_partials/person_item.dart';
 import 'package:voute/utils/mk_screen_util.dart';
 import 'package:voute/utils/mk_theme.dart';
@@ -63,9 +64,7 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(height: sh(6)),
                 _TitleContentBlock(
                   title: "FAVORITE PEOPLE",
-                  onTap: () {
-                    //
-                  },
+                  onTap: () => DashboardPage.of(context).goToTab(3),
                   child: Column(
                     children: <Widget>[
                       PersonItem(),
@@ -79,9 +78,7 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(height: sh(24)),
                 _TitleContentBlock(
                   title: "FAVORITE BANKS",
-                  onTap: () {
-                    //
-                  },
+                  onTap: () => DashboardPage.of(context).goToTab(0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
