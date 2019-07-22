@@ -25,28 +25,16 @@ class _HomePageState extends State<HomePage> {
     return CustomScrollView(
       physics: const BouncingScrollPhysics(),
       slivers: <Widget>[
+        // Intentional: there is a bug after switch between other tabs
+        // and then coming back to home
+//        SliverToBoxAdapter(child: Container()),
         MkSliverAppBarAlt(
-          child: Row(
-            children: <Widget>[
-              Expanded(
-                child: TextField(
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(FeatherIcons.search),
-                    suffixIcon: MkIconButton(
-                      icon: FeatherIcons.xCircle,
-                      color: Colors.black12,
-                      onPressed: () {},
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(width: sw(16)),
-              MkIconButton(
-                icon: FeatherIcons.user,
-                fillColor: MkColors.dark.shade50,
-                onPressed: () {},
-              ),
-            ],
+          child: MkSearchBarRow(
+            trailing: MkIconButton(
+              icon: FeatherIcons.user,
+              fillColor: MkColors.dark.shade50,
+              onPressed: () {},
+            ),
           ),
         ),
         SliverPadding(
@@ -166,7 +154,7 @@ class _TitleContentBlock extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = MkTheme.of(context);
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: sw(28)),
+      padding: EdgeInsets.symmetric(horizontal: sw(20)),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[

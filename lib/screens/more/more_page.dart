@@ -21,7 +21,7 @@ class _MorePageState extends State<MorePage> {
       slivers: <Widget>[
         MkSliverAppBarAlt(
           child: SizedBox(
-            height: kBaseAppBarHeight,
+            height: sh(kBaseAppBarHeight),
             child: Center(
               child: Text("More", style: MkTheme.of(context).subhead4Medium),
             ),
