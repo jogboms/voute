@@ -1,5 +1,6 @@
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:rebloc/rebloc.dart';
 import 'package:voute/constants/mk_colors.dart';
 import 'package:voute/constants/mk_routes.dart';
@@ -37,11 +38,14 @@ class DashboardPage extends StatefulWidget {
     );
   }
 
+  static DashboardPageState of(BuildContext context) =>
+      Provider.of<DashboardPageState>(context);
+
   @override
-  _DashboardPageState createState() => _DashboardPageState();
+  DashboardPageState createState() => DashboardPageState();
 }
 
-class _DashboardPageState extends State<DashboardPage>
+class DashboardPageState extends State<DashboardPage>
     with TickerProviderStateMixin, MkAfterFirstLayoutProvider {
   final List<int> _navHistory = [];
   int _currentPageIndex = 2;
@@ -107,10 +111,10 @@ class _DashboardPageState extends State<DashboardPage>
       onWillPop: () async {
         if (_navHistory.isNotEmpty) {
           final _prevIndex = _navHistory.length - 1;
-          _onSwitchTab(_navHistory.removeAt(_prevIndex));
+          goToTab(_navHistory.removeAt(_prevIndex));
           print(_prevIndex);
         } else {
-          _onSwitchTab(0);
+          goToTab(0);
         }
         print(_navHistory);
         return false;
@@ -123,15 +127,18 @@ class _DashboardPageState extends State<DashboardPage>
           body: TabBarView(
             controller: _controller,
             physics: const NeverScrollableScrollPhysics(),
-            children: _tabViews
-                .map((child) => KeyboardWrapperView(child: child))
-                .toList(),
+            children: _tabViews.map((child) {
+              return Provider<DashboardPageState>.value(
+                value: this,
+                child: KeyboardWrapperView(child: child),
+              );
+            }).toList(),
           ),
           bottomNavigationBar: SizedBox(
             height: ss(56) + MkScreenUtil().safeArea.bottom,
             child: _TabBar(
               currentIndex: _controller.index,
-              onNavigate: _onSwitchTab,
+              onNavigate: goToTab,
               tabs: _tabIcons,
             ),
           ),
@@ -146,7 +153,7 @@ class _DashboardPageState extends State<DashboardPage>
     );
   }
 
-  void _onSwitchTab(int index) {
+  void goToTab(int index) {
     _controller.animateTo(
       index,
       duration: const Duration(milliseconds: 150),
@@ -210,36 +217,23 @@ class _TabButton extends StatelessWidget {
     return ConstrainedBox(
       constraints: BoxConstraints.tight(Size.square(ss(56))),
       child: Stack(
-        fit: StackFit.expand,
         children: <Widget>[
-          Align(
-            alignment: Alignment.topCenter,
-            child: Container(
-              width: sw(24),
-              height: sh(4),
-              decoration: BoxDecoration(
-                color: isActive
-                    ? MkColors.base_primary.shade400
-                    : Colors.transparent,
-                borderRadius: BorderRadius.circular(ss(2)),
+          if (isActive)
+            Align(
+              alignment: Alignment.topCenter,
+              child: Container(
+                width: sw(24),
+                height: sh(4),
+                decoration: BoxDecoration(
+                  color: MkColors.base_primary.shade400,
+                  borderRadius: BorderRadius.circular(ss(2)),
+                ),
               ),
             ),
-          ),
           RawMaterialButton(
             constraints: BoxConstraints.expand(),
             shape: CircleBorder(),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                SizedBox(height: sh(5)),
-                Icon(
-                  tab.icon,
-                  color: MkColors.dark.shade600,
-                  size: sf(24),
-                ),
-                SizedBox(height: sh(5)),
-              ],
-            ),
+            child: Icon(tab.icon, color: MkColors.dark.shade600, size: sf(24)),
             onPressed: onPressed,
           ),
         ],

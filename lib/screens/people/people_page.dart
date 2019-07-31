@@ -21,27 +21,12 @@ class _PeoplePageState extends State<PeoplePage> {
       physics: const BouncingScrollPhysics(),
       slivers: <Widget>[
         MkSliverAppBarAlt(
-          child: Row(
-            children: <Widget>[
-              Expanded(
-                child: TextField(
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(FeatherIcons.search),
-                    suffixIcon: MkIconButton(
-                      icon: FeatherIcons.xCircle,
-                      color: Colors.black12,
-                      onPressed: () {},
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(width: sw(16)),
-              MkIconButton(
-                icon: FeatherIcons.plus,
-                fillColor: MkColors.dark.shade50,
-                onPressed: () {},
-              ),
-            ],
+          child: MkSearchBarRow(
+            trailing: MkIconButton(
+              icon: FeatherIcons.plus,
+              fillColor: MkColors.dark.shade50,
+              onPressed: () {},
+            ),
           ),
         ),
         SliverPadding(

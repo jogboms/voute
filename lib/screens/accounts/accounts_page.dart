@@ -21,27 +21,12 @@ class _AccountsPageState extends State<AccountsPage> {
       physics: const BouncingScrollPhysics(),
       slivers: <Widget>[
         MkSliverAppBarAlt(
-          child: Row(
-            children: <Widget>[
-              Expanded(
-                child: TextField(
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(FeatherIcons.search),
-                    suffixIcon: MkIconButton(
-                      icon: FeatherIcons.xCircle,
-                      color: Colors.black12,
-                      onPressed: () {},
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(width: sw(16)),
-              MkIconButton(
-                icon: FeatherIcons.plus,
-                fillColor: MkColors.dark.shade50,
-                onPressed: () {},
-              ),
-            ],
+          child: MkSearchBarRow(
+            trailing: MkIconButton(
+              icon: FeatherIcons.plus,
+              fillColor: MkColors.dark.shade50,
+              onPressed: () {},
+            ),
           ),
         ),
         SliverPadding(
@@ -66,10 +51,7 @@ class _AccountsPageState extends State<AccountsPage> {
 class _AccountItem extends StatelessWidget {
   const _AccountItem({
     Key key,
-    @required this.theme,
   }) : super(key: key);
-
-  final MkTheme theme;
 
   @override
   Widget build(BuildContext context) {

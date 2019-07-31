@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:voute/constants/mk_colors.dart';
 import 'package:voute/screens/cards/_partials/card_item.dart';
+import 'package:voute/screens/dashboard/dashboard_page.dart';
 import 'package:voute/screens/people/_partials/person_item.dart';
 import 'package:voute/utils/mk_screen_util.dart';
 import 'package:voute/utils/mk_theme.dart';
@@ -25,28 +26,16 @@ class _HomePageState extends State<HomePage> {
     return CustomScrollView(
       physics: const BouncingScrollPhysics(),
       slivers: <Widget>[
+        // Intentional: there is a bug after switch between other tabs
+        // and then coming back to home
+//        SliverToBoxAdapter(child: Container()),
         MkSliverAppBarAlt(
-          child: Row(
-            children: <Widget>[
-              Expanded(
-                child: TextField(
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(FeatherIcons.search),
-                    suffixIcon: MkIconButton(
-                      icon: FeatherIcons.xCircle,
-                      color: Colors.black12,
-                      onPressed: () {},
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(width: sw(16)),
-              MkIconButton(
-                icon: FeatherIcons.user,
-                fillColor: MkColors.dark.shade50,
-                onPressed: () {},
-              ),
-            ],
+          child: MkSearchBarRow(
+            trailing: MkIconButton(
+              icon: FeatherIcons.user,
+              fillColor: MkColors.dark.shade50,
+              onPressed: () {},
+            ),
           ),
         ),
         SliverPadding(
@@ -75,9 +64,7 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(height: sh(6)),
                 _TitleContentBlock(
                   title: "FAVORITE PEOPLE",
-                  onTap: () {
-                    //
-                  },
+                  onTap: () => DashboardPage.of(context).goToTab(3),
                   child: Column(
                     children: <Widget>[
                       PersonItem(),
@@ -91,9 +78,7 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(height: sh(24)),
                 _TitleContentBlock(
                   title: "FAVORITE BANKS",
-                  onTap: () {
-                    //
-                  },
+                  onTap: () => DashboardPage.of(context).goToTab(0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
@@ -166,7 +151,7 @@ class _TitleContentBlock extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = MkTheme.of(context);
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: sw(28)),
+      padding: EdgeInsets.symmetric(horizontal: sw(20)),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
