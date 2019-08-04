@@ -2,7 +2,9 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:drawable="@drawable/gradient_background" />
 
-    <item android:gravity="center" android:width="24dp" android:height="24dp">
-        <bitmap android:gravity="center" android:src="@mipmap/logo" />
-    </item>
+    <item
+        android:width="96dp"
+        android:height="96dp"
+        android:drawable="@mipmap/logo"
+        android:gravity="center" />
 </layer-list>
