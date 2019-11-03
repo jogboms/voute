@@ -50,8 +50,7 @@ class SplashPage extends StatelessWidget {
                   SizedBox(height: sh(24)),
                   Text(
                     "VOÛTE",
-                    style: theme.title
-                        .copyWith(color: Colors.white, letterSpacing: 6),
+                    style: theme.title.copyWith(color: Colors.white, letterSpacing: 6),
                   ),
                   SizedBox(height: sh(2)),
                   Text(

@@ -83,8 +83,7 @@ class _AccountItem extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       "First Bank",
-                      style: theme.body3Medium
-                          .copyWith(color: MkColors.light_grey),
+                      style: theme.body3Medium.copyWith(color: MkColors.light_grey),
                     ),
                     Text(
                       "09152437489",

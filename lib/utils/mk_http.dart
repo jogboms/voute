@@ -21,8 +21,7 @@ class MkHttp {
   static String get _url => MkSettings.api;
 
   static Map<String, String> get mkHttpHeaders => <String, String>{
-        "Authorization":
-            MkSettings.tokenKey == null ? "" : "Bearer " + MkSettings.tokenKey,
+        "Authorization": MkSettings.tokenKey == null ? "" : "Bearer " + MkSettings.tokenKey,
         HttpHeaders.contentTypeHeader: _CONTENT_TYPE,
       };
 

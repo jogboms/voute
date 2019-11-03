@@ -5,8 +5,7 @@ import 'package:voute/models/config.dart';
 
 part 'bootstrap.g.dart';
 
-abstract class BootstrapState
-    implements Built<BootstrapState, BootstrapStateBuilder> {
+abstract class BootstrapState implements Built<BootstrapState, BootstrapStateBuilder> {
   factory BootstrapState([
     void updates(BootstrapStateBuilder b),
   ]) = _$BootstrapState;
@@ -28,8 +27,7 @@ abstract class BootstrapState
   @nullable
   String get error;
 
-  static Serializer<BootstrapState> get serializer =>
-      _$bootstrapStateSerializer;
+  static Serializer<BootstrapState> get serializer => _$bootstrapStateSerializer;
 }
 
 class BootstrapStatus extends EnumClass {

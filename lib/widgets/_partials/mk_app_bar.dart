@@ -35,18 +35,15 @@ class MkAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     final _style = MkTheme.of(context).appBarTitle.copyWith(color: color);
     final ModalRoute<dynamic> parentRoute = ModalRoute.of(context);
-    final bool useCloseButton =
-        parentRoute is PageRoute<dynamic> && parentRoute.fullscreenDialog;
-    final Widget leadingButton = useCloseButton
-        ? MkCloseButton(color: _style.color)
-        : MkBackButton(color: _style.color);
+    final bool useCloseButton = parentRoute is PageRoute<dynamic> && parentRoute.fullscreenDialog;
+    final Widget leadingButton =
+        useCloseButton ? MkCloseButton(color: _style.color) : MkBackButton(color: _style.color);
 
     return AppBar(
       brightness: brightness ?? Brightness.dark,
       backgroundColor: backgroundColor,
       automaticallyImplyLeading: useCloseButton ? false : useLeading,
-      leading:
-          useCloseButton ? null : useLeading ? leading ?? leadingButton : null,
+      leading: useCloseButton ? null : useLeading ? leading ?? leadingButton : null,
       title: DefaultTextStyle(child: title, style: _style),
       elevation: elevation,
       actions: [

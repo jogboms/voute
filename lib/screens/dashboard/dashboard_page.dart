@@ -38,15 +38,13 @@ class DashboardPage extends StatefulWidget {
     );
   }
 
-  static DashboardPageState of(BuildContext context) =>
-      Provider.of<DashboardPageState>(context);
+  static DashboardPageState of(BuildContext context) => Provider.of<DashboardPageState>(context);
 
   @override
   DashboardPageState createState() => DashboardPageState();
 }
 
-class DashboardPageState extends State<DashboardPage>
-    with TickerProviderStateMixin, MkAfterFirstLayoutProvider {
+class DashboardPageState extends State<DashboardPage> with TickerProviderStateMixin, MkAfterFirstLayoutProvider {
   final List<int> _navHistory = [];
   int _currentPageIndex = 2;
   TabController _controller;
@@ -70,8 +68,7 @@ class DashboardPageState extends State<DashboardPage>
       const PeoplePage(key: const PageStorageKey("people")),
       const MorePage(key: const PageStorageKey("more")),
     ];
-    _controller = TabController(
-        vsync: this, initialIndex: _currentPageIndex, length: _tabViews.length)
+    _controller = TabController(vsync: this, initialIndex: _currentPageIndex, length: _tabViews.length)
       ..addListener(_pageListener);
   }
 
@@ -147,8 +144,7 @@ class DashboardPageState extends State<DashboardPage>
     );
 
     return FirstBuildDispatcher<AppState>(
-      action:
-          widget.user != null ? OnLoginAction(widget.user) : const VoidAction(),
+      action: widget.user != null ? OnLoginAction(widget.user) : const VoidAction(),
       child: child,
     );
   }

@@ -53,9 +53,7 @@ class MkCurrencyFormatter extends WhitelistingTextInputFormatter {
     final newText = NumberFormat("###,###.##").format(value);
     print([value, newText]);
 
-    final extra = ","
-        .allMatches(newText.substring(0, newerValue.selection.baseOffset))
-        .length;
+    final extra = ",".allMatches(newText.substring(0, newerValue.selection.baseOffset)).length;
 
     return newerValue.copyWith(
       text: newText,

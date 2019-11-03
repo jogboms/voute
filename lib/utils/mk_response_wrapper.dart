@@ -10,8 +10,7 @@ import 'package:voute/utils/mk_settings.dart';
 typedef T TransformFunction<T>(dynamic data, String message);
 
 class NoInternetException extends MkResponseException {
-  NoInternetException()
-      : super(HttpStatus.serviceUnavailable, MkStrings.networkError);
+  NoInternetException() : super(HttpStatus.serviceUnavailable, MkStrings.networkError);
 }
 
 class ForbiddenException extends MkResponseException {
@@ -19,8 +18,7 @@ class ForbiddenException extends MkResponseException {
 }
 
 class TimeOutException extends MkResponseException {
-  TimeOutException()
-      : super(HttpStatus.requestTimeout, MkStrings.timeoutErrorMessage);
+  TimeOutException() : super(HttpStatus.requestTimeout, MkStrings.timeoutErrorMessage);
 }
 
 class BadRequestException extends MkResponseException {
@@ -28,13 +26,11 @@ class BadRequestException extends MkResponseException {
 }
 
 class FileTooLargeException extends MkResponseException {
-  FileTooLargeException()
-      : super(HttpStatus.requestEntityTooLarge, MkStrings.isTooLargeMessage);
+  FileTooLargeException() : super(HttpStatus.requestEntityTooLarge, MkStrings.isTooLargeMessage);
 }
 
 class NotAuthorisedException extends MkResponseException {
-  NotAuthorisedException([String message])
-      : super(HttpStatus.unauthorized, message);
+  NotAuthorisedException([String message]) : super(HttpStatus.unauthorized, message);
 }
 
 class MkResponseException implements MkException {
@@ -63,9 +59,7 @@ class MkResponseWrapper<T> {
       _authorizationToken = responseJson["authorization_token"];
     } catch (e) {
       message =
-          _response.statusCode == HttpStatus.badGateway && !MkSettings.isDev
-              ? MkStrings.errorMessage
-              : e.toString();
+          _response.statusCode == HttpStatus.badGateway && !MkSettings.isDev ? MkStrings.errorMessage : e.toString();
       rawData = null;
       _authorizationToken = null;
       if (showThrow) {
@@ -125,8 +119,7 @@ class MkResponseWrapper<T> {
 
   String get reasonPhrase => _response.reasonPhrase;
 
-  String get token =>
-      _authorizationToken != null ? _authorizationToken["token"] : null;
+  String get token => _authorizationToken != null ? _authorizationToken["token"] : null;
 
   bool get isOk {
     if (statusCode >= 200 && statusCode < 300) {

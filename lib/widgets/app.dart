@@ -80,9 +80,7 @@ class _AppState extends State<App> {
                           return const SizedBox();
                         }
 
-                        return _bs.isRemembered
-                            ? const PlaceholderView()
-                            : SplashPage(isFirstTime: _bs.isFirstTime);
+                        return _bs.isRemembered ? const PlaceholderView() : SplashPage(isFirstTime: _bs.isFirstTime);
                       },
                       settings: settings.copyWith(
                         name: MkRoutes.start,

@@ -44,10 +44,7 @@ class UsersImpl extends Users {
     final _token = await MkPrefs.getString(FCM_DEVICE_TOKEN);
     final response = await MkHttp.post(
       '/registerDevice',
-      <String, String>{
-        "deviceId": _token,
-        "type": Platform.isAndroid ? "android" : "ios"
-      },
+      <String, String>{"deviceId": _token, "type": Platform.isAndroid ? "android" : "ios"},
     );
 
     return fromBoolResponse(response);

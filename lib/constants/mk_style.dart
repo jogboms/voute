@@ -64,8 +64,7 @@ class MkStyle extends TextStyle {
   static const FontWeight bold = FontWeight.w900;
 }
 
-TextStyle mkFont(double fontSize, Color color) =>
-    MkStyle.mkFont(fontSize: fontSize, color: color);
+TextStyle mkFont(double fontSize, Color color) => MkStyle.mkFont(fontSize: fontSize, color: color);
 
 TextStyle mkFontSize(double fontSize) => MkStyle.mkFont(fontSize: fontSize);
 

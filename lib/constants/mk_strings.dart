@@ -13,14 +13,10 @@ class MkStrings {
       "Please check your network connection or contact your service provider if the problem persists.";
   static const String successMessage = "Hurray!";
   static const String errorMessage = "An error occurred. Please try again.";
-  static const String fixErrors =
-      "Please fix the errors in red before submitting";
-  static const String timeoutErrorMessage =
-      "This action took too long. Please Retry.";
-  static const String isTooLargeMessage =
-      "The file you chose to upload is too large.";
-  static const String verifyErrorMessage =
-      "We had issues processing your request, Please Retry.";
+  static const String fixErrors = "Please fix the errors in red before submitting";
+  static const String timeoutErrorMessage = "This action took too long. Please Retry.";
+  static const String isTooLargeMessage = "The file you chose to upload is too large.";
+  static const String verifyErrorMessage = "We had issues processing your request, Please Retry.";
   static const List<String> monthsShort = <String>[
     "Jan",
     "Feb",

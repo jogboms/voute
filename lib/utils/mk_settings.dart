@@ -13,8 +13,7 @@ class MkSettings {
   static String tokenKey;
 
   // TODO: replace with real values
-  static String get domain =>
-      isDev ? "https://google.com" : "https://google.com";
+  static String get domain => isDev ? "https://google.com" : "https://google.com";
 
   static String get api => domain + "/api";
 

@@ -18,8 +18,7 @@ class UsersMockImpl extends Users {
   }
 
   @override
-  MkResponseWrapper<UserModel> fromResponse(Response response) =>
-      MkResponseWrapper<UserModel>.mock(fromJson(null));
+  MkResponseWrapper<UserModel> fromResponse(Response response) => MkResponseWrapper<UserModel>.mock(fromJson(null));
 
   @override
   Future<UserModel> login(LoginModel data) async {

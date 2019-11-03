@@ -24,9 +24,7 @@ class FixedHeightScrollView extends StatelessWidget {
           child: ConstrainedBox(
             constraints: BoxConstraints.tight(
               Size.fromHeight(
-                constraint.biggest.longestSide +
-                    _media.viewInsets.bottom -
-                    padding.vertical,
+                constraint.biggest.longestSide + _media.viewInsets.bottom - padding.vertical,
               ),
             ),
             child: child,

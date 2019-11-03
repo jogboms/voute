@@ -23,8 +23,7 @@ class MkPersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
       height: height,
       minExtent: _minExtent,
       maxExtent: _maxExtent,
-      builder:
-          (BuildContext context, double shrinkOffset, bool overlapsContent) {
+      builder: (BuildContext context, double shrinkOffset, bool overlapsContent) {
         return builder(context, shrinkOffset > (_maxExtent - _minExtent));
       },
     );

@@ -31,8 +31,7 @@ class MkClearButton extends StatelessWidget {
     final num _safeAreaBottom = MediaQuery.of(context).padding.bottom;
     final _padding = EdgeInsets.only(
       top: padding?.top ?? sh(8),
-      bottom:
-          (padding?.bottom ?? sh(8)) + (useSafeArea ? _safeAreaBottom : 0.0),
+      bottom: (padding?.bottom ?? sh(8)) + (useSafeArea ? _safeAreaBottom : 0.0),
       left: padding?.left ?? 0.0,
       right: padding?.right ?? 0.0,
     );

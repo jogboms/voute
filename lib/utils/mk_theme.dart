@@ -61,8 +61,7 @@ class MkTheme extends InheritedWidget {
   TextStyle get subhead4Medium => subhead4.copyWith(fontWeight: MkStyle.medium);
   TextStyle get headline => _header20Style;
 
-  TextStyle get appBarTitle =>
-      display1.copyWith(fontWeight: MkStyle.medium, letterSpacing: 1.75);
+  TextStyle get appBarTitle => display1.copyWith(fontWeight: MkStyle.medium, letterSpacing: 1.75);
 
   TextStyle get display1 => _text20Style;
   TextStyle get display1Light => display1.copyWith(fontWeight: MkStyle.light);
@@ -104,8 +103,7 @@ class MkTheme extends InheritedWidget {
   TextStyle get _text24Style => mkFontRegular(24.0);
   TextStyle get _text32Style => mkFontRegular(32.0);
 
-  static MkTheme of(BuildContext context) =>
-      context.inheritFromWidgetOfExactType(MkTheme);
+  static MkTheme of(BuildContext context) => context.inheritFromWidgetOfExactType(MkTheme);
 
   ThemeData themeData(ThemeData theme) {
     return ThemeData(

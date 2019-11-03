@@ -84,8 +84,7 @@ class CardItem extends StatelessWidget {
           SizedBox(height: sh(16)),
           Text(
             "**** **** **** 1234",
-            style: theme.subhead4Medium.copyWith(
-                letterSpacing: 1.5, fontFamily: MkFonts.ocr, color: color),
+            style: theme.subhead4Medium.copyWith(letterSpacing: 1.5, fontFamily: MkFonts.ocr, color: color),
             textAlign: TextAlign.justify,
           ),
           SizedBox(height: sh(24)),
@@ -98,8 +97,7 @@ class CardItem extends StatelessWidget {
               ),
               Text(
                 "08/21",
-                style: theme.bodyMedium.copyWith(
-                    letterSpacing: 1.25, fontFamily: MkFonts.ocr, color: color),
+                style: theme.bodyMedium.copyWith(letterSpacing: 1.25, fontFamily: MkFonts.ocr, color: color),
               ),
             ],
           ),
