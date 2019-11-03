@@ -11,7 +11,7 @@ import 'package:voute/widgets/bootstrap.dart';
 
 void main() {
   testWidgets('Smoke test', (WidgetTester tester) async {
-    final BootstrapModel bs = await bootstrap(Environment.MOCK, true);
+    final BootstrapModel bs = await bootstrap(Env.MOCK, true);
 
     // Build our app and trigger a frame.
     await tester.pumpWidget(

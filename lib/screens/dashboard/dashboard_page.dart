@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:rebloc/rebloc.dart';
 import 'package:voute/constants/mk_colors.dart';
 import 'package:voute/constants/mk_routes.dart';
+import 'package:voute/environments/environment.dart';
 import 'package:voute/models/user/user.dart';
 import 'package:voute/rebloc/actions/common.dart';
 import 'package:voute/rebloc/states/app.dart';
@@ -13,9 +14,9 @@ import 'package:voute/screens/cards/cards_page.dart';
 import 'package:voute/screens/home/home_page.dart';
 import 'package:voute/screens/more/more_page.dart';
 import 'package:voute/screens/people/people_page.dart';
+import 'package:voute/utils/mk_first_time_login_check.dart';
 import 'package:voute/utils/mk_navigate.dart';
 import 'package:voute/utils/mk_screen_util.dart';
-import 'package:voute/utils/mk_settings.dart';
 import 'package:voute/utils/mk_status_bar.dart';
 import 'package:voute/widgets/_views/keyboard_wrapper_view.dart';
 
@@ -74,7 +75,7 @@ class DashboardPageState extends State<DashboardPage> with TickerProviderStateMi
 
   @override
   void afterFirstLayout(BuildContext context) async {
-    await MkSettings.checkIsFirstTimeLogin()
+    await MkFirstTimeLoginCheck.check(Environment.di())
         .then<bool>((bool isFirstTimeLogin) => Future<bool>.delayed(const Duration(seconds: 3), () => isFirstTimeLogin))
         .then((bool isFirstTimeLogin) async {});
   }

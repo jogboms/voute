@@ -9,26 +9,27 @@ import 'package:voute/services/_mocks/config.dart';
 import 'package:voute/services/_mocks/users.dart';
 import 'package:voute/services/config.dart';
 import 'package:voute/services/users.dart';
+import 'package:voute/utils/mk_first_time_check.dart';
 import 'package:voute/utils/mk_logger.dart';
 import 'package:voute/utils/mk_remember_me_provider.dart';
-import 'package:voute/utils/mk_settings.dart';
+import 'package:voute/utils/mk_version_check.dart';
 
-Future<BootstrapModel> bootstrap(Environment env, [bool isTestMode = false]) async {
-  MkSettings.environment = env;
-  MkSettings.isTestMode = isTestMode;
+Future<BootstrapModel> bootstrap(Env env, [bool isTestMode = false]) async {
+  final _env = Environment(env);
 
-  MkLogger.init(MkSettings.isDev);
+  MkLogger.init(_env.isDev);
 
   Injector.appInstance
-    ..registerSingleton<Users>((_) => MkSettings.isMock ? UsersMockImpl() : UsersImpl())
-    ..registerSingleton<Config>((_) => MkSettings.isMock ? ConfigMockImpl() : ConfigImpl());
+    ..registerSingleton<Environment>((_) => Environment(env))
+    ..registerSingleton<Users>((_) => _env.isMock ? UsersMockImpl() : UsersImpl())
+    ..registerSingleton<Config>((_) => _env.isMock ? ConfigMockImpl() : ConfigImpl());
 
-  final isFirstTime = await MkSettings.checkIsFirstTimeLogin();
+  final isFirstTime = await MkFirstTimeCheck.init(_env);
 
   try {
-    await MkSettings.initVersion();
+    await MkVersionCheck.init(_env);
 
-    if (MkSettings.isMock) {
+    if (_env.isMock) {
       return BootstrapModel(isFirstTime: true, isTestMode: isTestMode, user: null);
     }
 
@@ -42,6 +43,8 @@ Future<BootstrapModel> bootstrap(Environment env, [bool isTestMode = false]) asy
   } catch (e) {
     MkLogger.d('$e');
   }
+
+  return BootstrapModel(user: null, isFirstTime: false);
 }
 
 class BootstrapModel {

@@ -11,9 +11,9 @@ import 'package:voute/rebloc/view_models/bootstrap.dart';
 import 'package:voute/screens/dashboard/dashboard_page.dart';
 import 'package:voute/utils/mk_linear_gradient.dart';
 import 'package:voute/utils/mk_screen_util.dart';
-import 'package:voute/utils/mk_settings.dart';
 import 'package:voute/utils/mk_status_bar.dart';
 import 'package:voute/utils/mk_theme.dart';
+import 'package:voute/utils/mk_version_check.dart';
 import 'package:voute/widgets/_partials/mk_loading_spinner.dart';
 
 class SplashPage extends StatelessWidget {
@@ -45,7 +45,7 @@ class SplashPage extends StatelessWidget {
                   Text("VOÛTE", style: theme.title.copyWith(color: Colors.white, letterSpacing: 6)),
                   SizedBox(height: sh(2)),
                   Text(
-                    MkSettings.getVersion(),
+                    MkVersionCheck.get(),
                     style: theme.xxsmall.copyWith(color: Colors.white.withOpacity(.69), letterSpacing: 2),
                   ),
                 ],

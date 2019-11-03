@@ -3,20 +3,21 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:voute/constants/mk_strings.dart';
+import 'package:voute/environments/environment.dart';
 import 'package:voute/models/main.dart';
 import 'package:voute/utils/mk_exceptions.dart';
-import 'package:voute/utils/mk_settings.dart';
 
 typedef TransformFunction<T> = T Function(Map<String, dynamic> data);
 
 class MkResponseWrapper<T extends ModelInterface> with ModelInterface {
   factory MkResponseWrapper(http.Response _response, {TransformFunction<T> onTransform, bool shouldThrow = true}) {
+    final isDev = Environment.di().isDev;
     final status = _Status(_response.statusCode);
     try {
       final Map<String, dynamic> responseJson = Model.stringToMap(_response.body);
 
       if (responseJson == null || status.isNotOk) {
-        throw MkResponseException(status.code, MkSettings.isDev ? _response.reasonPhrase : MkStrings.errorMessage);
+        throw MkResponseException(status.code, isDev ? _response.reasonPhrase : MkStrings.errorMessage);
       }
 
       return MkResponseWrapper._(
@@ -25,7 +26,7 @@ class MkResponseWrapper<T extends ModelInterface> with ModelInterface {
         data: onTransform != null ? onTransform(responseJson["data"]) : null,
       );
     } catch (e) {
-      final message = status.code == HttpStatus.badGateway && !MkSettings.isDev ? MkStrings.errorMessage : e.toString();
+      final message = status.code == HttpStatus.badGateway && !isDev ? MkStrings.errorMessage : e.toString();
 
       if (shouldThrow) {
         if (status.isForbidden) {
