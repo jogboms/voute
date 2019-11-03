@@ -5,11 +5,7 @@ import 'package:voute/utils/mk_theme.dart';
 import 'package:voute/widgets/_partials/mk_clear_button.dart';
 
 class MkCloseButton extends StatelessWidget {
-  const MkCloseButton({
-    Key key,
-    this.color,
-    this.onPop,
-  }) : super(key: key);
+  const MkCloseButton({Key key, this.color, this.onPop}) : super(key: key);
 
   final Color color;
   final VoidCallback onPop;
@@ -17,11 +13,7 @@ class MkCloseButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MkClearButton(
-      child: Icon(
-        FeatherIcons.x,
-        color: color ?? MkTheme.of(context).appBarTitle.color,
-        size: sf(32),
-      ),
+      child: Icon(FeatherIcons.x, color: color ?? MkTheme.of(context).appBarTitle.color, size: sf(32)),
       onPressed: onPop ?? () => Navigator.maybePop(context),
     );
   }

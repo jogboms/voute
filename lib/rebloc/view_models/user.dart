@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:rebloc/rebloc.dart';
 import 'package:voute/constants/mk_colors.dart';
 import 'package:voute/models/user/user.dart';
-import 'package:voute/rebloc/states/main.dart';
+import 'package:voute/rebloc/states/app.dart';
 import 'package:voute/rebloc/states/user.dart';
 import 'package:voute/utils/mk_typed_widget_builder.dart';
 import 'package:voute/widgets/_partials/mk_loading_spinner.dart';
@@ -16,11 +16,7 @@ class UserViewModel extends Equatable {
         error = state.user.error,
         super(<AppState>[state]);
 
-  factory UserViewModel.of(BuildContext context) {
-    return UserViewModel(
-      StoreProvider.of<AppState>(context).states.value,
-    );
-  }
+  factory UserViewModel.of(BuildContext context) => UserViewModel(StoreProvider.of<AppState>(context).states.value);
 
   final UserModel model;
   final bool isLoading;
@@ -29,24 +25,16 @@ class UserViewModel extends Equatable {
 
   bool get isAvailable => !isLoading && model != null;
 
-  static Widget build({
-    @required MkTypedWidgetBuilder<UserViewModel> builder,
-  }) {
+  static Widget build({@required MkTypedWidgetBuilder<UserViewModel> builder}) {
     return ViewModelSubscriber<AppState, UserViewModel>(
-      builder: (
-        BuildContext context,
-        DispatchFunction dispatcher,
-        UserViewModel viewModel,
-      ) {
+      converter: (AppState state) => UserViewModel(state),
+      builder: (BuildContext context, DispatchFunction dispatcher, UserViewModel viewModel) {
         if (viewModel.isLoading || viewModel.model == null) {
-          return MkLoadingSpinner(
-            color: MkColors.smokey,
-          );
+          return MkLoadingSpinner(color: MkColors.smokey);
         }
 
         return builder(context, viewModel);
       },
-      converter: (AppState state) => UserViewModel(state),
     );
   }
 }

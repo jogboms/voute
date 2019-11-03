@@ -41,6 +41,7 @@ dependencies:
   lumberdash: ^1.0.3
   colorize_lumberdash: ^1.1.0
   flutter_swiper: ^1.1.6
+  after_layout: ^1.0.7
 
 dev_dependencies:
   flutter_test:

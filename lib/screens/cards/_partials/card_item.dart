@@ -8,7 +8,12 @@ import 'package:voute/utils/mk_screen_util.dart';
 import 'package:voute/utils/mk_theme.dart';
 import 'package:voute/widgets/_partials/mk_icon_button.dart';
 
-const double kCardItemHeight = 180.0;
+const double cardItemHeight = 180.0;
+
+enum CardItemType {
+  plain,
+  gradient,
+}
 
 class CardItem extends StatelessWidget {
   const CardItem({
@@ -24,7 +29,14 @@ class CardItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final child = _buildContent(context);
+    Widget child = _Item(icon: MkImages.cards[index % 3], type: type);
+
+    if (type == CardItemType.gradient) {
+      child = DecoratedBox(
+        decoration: const BoxDecoration(gradient: MkLinearGradient()),
+        child: child,
+      );
+    }
 
     return Material(
       elevation: elevation,
@@ -32,28 +44,25 @@ class CardItem extends StatelessWidget {
       borderRadius: BorderRadius.circular(8),
       clipBehavior: Clip.hardEdge,
       child: InkWell(
-        onTap: () {
-          //
-        },
-        child: SizedBox(
-          height: sh(kCardItemHeight),
-          child: type == CardItemType.gradient
-              ? DecoratedBox(
-                  decoration: BoxDecoration(
-                    gradient: MkLinearGradient(),
-                  ),
-                  child: child,
-                )
-              : child,
-        ),
+        onTap: () {},
+        child: SizedBox(height: sh(cardItemHeight), child: child),
       ),
     );
   }
+}
 
-  Padding _buildContent(BuildContext context) {
+class _Item extends StatelessWidget {
+  const _Item({Key key, @required this.icon, @required this.type})
+      : color = type == CardItemType.gradient ? Colors.white : MkColors.dark,
+        super(key: key);
+
+  final ImageProvider icon;
+  final CardItemType type;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
     final theme = MkTheme.of(context);
-    final color = type == CardItemType.gradient ? Colors.white : MkColors.dark;
-    final icon = MkImages.cards[index % 3];
     final size = sw(48);
 
     return Padding(
@@ -70,9 +79,7 @@ class CardItem extends StatelessWidget {
               MkIconButton(
                 icon: FeatherIcons.moreHorizontal,
                 color: color,
-                onPressed: () {
-                  //
-                },
+                onPressed: () {},
               ),
             ],
           ),
@@ -105,9 +112,4 @@ class CardItem extends StatelessWidget {
       ),
     );
   }
-}
-
-enum CardItemType {
-  plain,
-  gradient,
 }

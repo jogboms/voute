@@ -16,24 +16,16 @@ abstract class ModelInterface {
 abstract class Model with ModelInterface {
   static DateTime parseTimestamp(String timestamp) {
     try {
-      return DateTime.fromMillisecondsSinceEpoch(
-        int.parse(timestamp),
-      );
+      return DateTime.fromMillisecondsSinceEpoch(int.parse(timestamp));
     } catch (e) {
       return DateTime.now();
     }
   }
 
-  static List<T> generator<T>(dynamic items, Function(dynamic) cb) {
-    return List<T>.generate(
-      items != null ? items.length : 0,
-      (int index) => cb(items[index]),
-    );
-  }
+  static List<T> generator<T>(dynamic items, Function(dynamic) cb) =>
+      List<T>.generate(items != null ? items.length : 0, (int index) => cb(items[index]));
 
-  static String mapToString(Map<String, dynamic> map) {
-    return json.encode(map);
-  }
+  static String mapToString(Map<String, dynamic> map) => json.encode(map);
 
   static Map<String, dynamic> stringToMap(String string) {
     if (string == null || string.isEmpty) {

@@ -4,8 +4,8 @@ import 'package:flutter/widgets.dart';
 import 'package:rebloc/rebloc.dart';
 import 'package:voute/constants/mk_colors.dart';
 import 'package:voute/models/config.dart';
+import 'package:voute/rebloc/states/app.dart';
 import 'package:voute/rebloc/states/bootstrap.dart';
-import 'package:voute/rebloc/states/main.dart';
 import 'package:voute/utils/mk_typed_widget_builder.dart';
 import 'package:voute/widgets/_partials/mk_loading_spinner.dart';
 
@@ -22,24 +22,16 @@ class BootstrapViewModel extends Equatable {
   final bool hasError;
   final dynamic error;
 
-  static Widget build({
-    @required MkTypedWidgetBuilder<BootstrapViewModel> builder,
-  }) {
+  static Widget build({@required MkTypedWidgetBuilder<BootstrapViewModel> builder}) {
     return ViewModelSubscriber<AppState, BootstrapViewModel>(
-      builder: (
-        BuildContext context,
-        DispatchFunction dispatcher,
-        BootstrapViewModel viewModel,
-      ) {
+      converter: (AppState state) => BootstrapViewModel(state),
+      builder: (BuildContext context, DispatchFunction dispatcher, BootstrapViewModel viewModel) {
         if (viewModel.isLoading || viewModel.config == null) {
-          return MkLoadingSpinner(
-            color: MkColors.smokey,
-          );
+          return MkLoadingSpinner(color: MkColors.smokey);
         }
 
         return builder(context, viewModel);
       },
-      converter: (AppState state) => BootstrapViewModel(state),
     );
   }
 }

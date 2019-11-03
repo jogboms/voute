@@ -6,9 +6,8 @@ import 'package:voute/constants/mk_routes.dart';
 import 'package:voute/constants/mk_strings.dart';
 import 'package:voute/rebloc/actions/common.dart';
 import 'package:voute/rebloc/main.dart';
-import 'package:voute/rebloc/states/main.dart';
+import 'package:voute/rebloc/states/app.dart';
 import 'package:voute/screens/splash/splash_page.dart';
-import 'package:voute/utils/mk_navigate.dart';
 import 'package:voute/utils/mk_screen_util.dart';
 import 'package:voute/utils/mk_theme.dart';
 import 'package:voute/widgets/_views/placeholder_view.dart';
@@ -56,43 +55,55 @@ class _AppState extends State<App> {
           child: ProgressHudView(
             opacity: .9,
             child: Builder(
-              builder: (BuildContext context) {
-                return MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: MkStrings.appName,
-                  color: Colors.white,
-                  theme: MkTheme.of(context).themeData(Theme.of(context)),
-                  builder: (context, child) {
-                    return Builder(
-                      builder: (BuildContext context) {
-                        MkScreenUtil.initialize(
-                          context: context,
-                          config: screenConfig,
-                        );
-                        return child;
-                      },
-                    );
+              builder: (BuildContext context) => MaterialApp(
+                debugShowCheckedModeBanner: false,
+                title: MkStrings.appName,
+                color: Colors.white,
+                theme: MkTheme.of(context).themeData(Theme.of(context)),
+                builder: (_, child) => Builder(
+                  builder: (BuildContext context) {
+                    MkScreenUtil.initialize(context: context, config: screenConfig);
+                    return child;
                   },
-                  onGenerateRoute: (RouteSettings settings) {
-                    return MkNavigateRoute<dynamic>(
-                      builder: (_) {
-                        if (_bs.isTestMode) {
-                          return const SizedBox();
-                        }
+                ),
+                onGenerateRoute: (RouteSettings settings) => _PageRoute<dynamic>(
+                  settings: settings.copyWith(name: MkRoutes.start, isInitialRoute: true),
+                  builder: (_) {
+                    if (_bs.isTestMode) {
+                      return const SizedBox();
+                    }
 
-                        return _bs.isRemembered ? const PlaceholderView() : SplashPage(isFirstTime: _bs.isFirstTime);
-                      },
-                      settings: settings.copyWith(
-                        name: MkRoutes.start,
-                        isInitialRoute: true,
-                      ),
-                    );
+                    return _bs.isRemembered ? const PlaceholderView() : SplashPage(isFirstTime: _bs.isFirstTime);
                   },
-                );
-              },
+                ),
+              ),
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _PageRoute<T> extends MaterialPageRoute<T> {
+  _PageRoute({WidgetBuilder builder, RouteSettings settings}) : super(builder: builder, settings: settings);
+
+  @override
+  Widget buildTransitions(
+    BuildContext context,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+    Widget child,
+  ) {
+    if (settings.isInitialRoute) {
+      return child;
+    }
+
+    return FadeTransition(
+      opacity: animation,
+      child: SlideTransition(
+        position: Tween<Offset>(begin: const Offset(0.0, 0.3), end: Offset.zero).animate(animation),
+        child: child,
       ),
     );
   }

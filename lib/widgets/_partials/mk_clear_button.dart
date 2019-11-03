@@ -43,10 +43,7 @@ class MkClearButton extends StatelessWidget {
       minSize: _height ?? kButtonHeight,
       color: backgroundColor,
       borderRadius: borderRadius ?? BorderRadius.zero,
-      child: DefaultTextStyle(
-        style: MkTheme.of(context).button.copyWith(color: color),
-        child: child,
-      ),
+      child: DefaultTextStyle(style: MkTheme.of(context).button.copyWith(color: color), child: child),
       onPressed: onPressed,
     );
   }

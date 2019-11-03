@@ -6,10 +6,6 @@ class PlaceholderView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: MkAppBar(
-        title: Text("Placeholder"),
-      ),
-    );
+    return Scaffold(appBar: MkAppBar(title: Text("Placeholder")));
   }
 }

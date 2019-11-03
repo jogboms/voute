@@ -1,18 +1,14 @@
 import 'dart:async' show Future;
 
 import 'package:rebloc/rebloc.dart';
-import 'package:voute/rebloc/states/main.dart';
+import 'package:voute/rebloc/states/app.dart';
 import 'package:voute/utils/mk_logger.dart';
 import 'package:voute/utils/mk_settings.dart';
 
 /// Logs each incoming action.
 class LoggerBloc extends SimpleBloc<AppState> {
   @override
-  Future<Action> afterware(
-    DispatchFunction dispatcher,
-    AppState state,
-    Action action,
-  ) async {
+  Future<Action> afterware(DispatchFunction dispatcher, AppState state, Action action) async {
     if (!MkSettings.isTesting) {
       MkLogger.d("{\n$state\n}");
     }

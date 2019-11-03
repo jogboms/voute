@@ -1,34 +1,23 @@
 import 'dart:async';
 
 import 'package:rebloc/rebloc.dart';
-import 'package:voute/constants/mk_constants.dart';
-import 'package:voute/models/user/remember_me.dart';
 import 'package:voute/rebloc/actions/bootstrap.dart';
 import 'package:voute/rebloc/actions/common.dart';
 import 'package:voute/rebloc/actions/user.dart';
-import 'package:voute/rebloc/states/main.dart';
+import 'package:voute/rebloc/states/app.dart';
 import 'package:voute/services/users.dart';
-import 'package:voute/utils/mk_prefs.dart';
+import 'package:voute/utils/mk_remember_me_provider.dart';
 import 'package:voute/utils/mk_settings.dart';
 
 class AuthBloc extends SimpleBloc<AppState> {
   @override
-  Future<Action> middleware(
-    DispatchFunction dispatcher,
-    AppState state,
-    Action action,
-  ) async {
+  Future<Action> middleware(DispatchFunction dispatcher, AppState state, Action action) async {
     if (action is OnLoginAction) {
       final _user = action.user;
 
       MkSettings.userId = _user.id;
 
-      await MkPrefs.setMap(
-        PERSISTED_ID_TOKEN,
-        RememberMeModel(id: _user.id, token: MkSettings.tokenKey).toMap(),
-      );
-
-      await MkPrefs.setString(PERSISTED_LOGIN_EMAIL, _user.email);
+      await MkRememberMeProvider.set(_user.id);
 
       dispatcher(UserUpdateAction(_user));
     }
@@ -45,14 +34,10 @@ class AuthBloc extends SimpleBloc<AppState> {
   }
 
   @override
-  Future<Action> afterware(
-    DispatchFunction dispatcher,
-    AppState state,
-    Action action,
-  ) async {
+  Future<Action> afterware(DispatchFunction dispatcher, AppState state, Action action) async {
     if (action is OnLogoutAction) {
       await Users.di().logout();
-      await MkPrefs.remove(PERSISTED_ID_TOKEN);
+      await MkRememberMeProvider.clear();
       MkSettings.userId = null;
       dispatcher(const BootstrapAsyncInitAction());
     }

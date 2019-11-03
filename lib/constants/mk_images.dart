@@ -1,8 +1,6 @@
 import 'package:flutter/widgets.dart';
 
 class MkImages {
-  MkImages._();
-
   static const List<ImageProvider> cards = [
     maestroLogo,
     mastercardLogo,

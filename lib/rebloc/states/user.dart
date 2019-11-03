@@ -6,9 +6,7 @@ import 'package:voute/models/user/user.dart';
 part 'user.g.dart';
 
 abstract class UserState implements Built<UserState, UserStateBuilder> {
-  factory UserState([
-    UserState updates(UserStateBuilder b),
-  ]) = _$UserState;
+  factory UserState([UserState updates(UserStateBuilder b)]) = _$UserState;
 
   factory UserState.initialState() => _$UserState(
         (UserStateBuilder b) => b
@@ -30,8 +28,11 @@ abstract class UserState implements Built<UserState, UserStateBuilder> {
 
   @nullable
   UserModel get user;
+
   UserStatus get status;
+
   String get message;
+
   @nullable
   String get error;
 

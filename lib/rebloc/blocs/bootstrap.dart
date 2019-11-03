@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:rebloc/rebloc.dart';
 import 'package:voute/constants/mk_strings.dart';
 import 'package:voute/rebloc/actions/bootstrap.dart';
+import 'package:voute/rebloc/states/app.dart';
 import 'package:voute/rebloc/states/bootstrap.dart';
-import 'package:voute/rebloc/states/main.dart';
 import 'package:voute/services/config.dart';
 import 'package:voute/utils/mk_logger.dart';
 import 'package:voute/utils/mk_retry.dart';
@@ -12,11 +12,7 @@ import 'package:voute/utils/mk_settings.dart';
 
 class BootstrapBloc extends SimpleBloc<AppState> {
   @override
-  Future<Action> middleware(
-    DispatchFunction dispatcher,
-    AppState state,
-    Action action,
-  ) async {
+  Future<Action> middleware(DispatchFunction dispatcher, AppState state, Action action) async {
     if (action is BootstrapAsyncInitAction) {
       return const BootstrapAsyncLoadingAction();
     }
@@ -53,29 +49,15 @@ class BootstrapBloc extends SimpleBloc<AppState> {
   }
 
   @override
-  Future<Action> afterware(
-    DispatchFunction dispatcher,
-    AppState state,
-    Action action,
-  ) async {
+  Future<Action> afterware(DispatchFunction dispatcher, AppState state, Action action) async {
     if (action is BootstrapAsyncLoadingAction) {
       try {
-        final _config = await mkRetry(
-          () => Config.di().fetch(),
-          tryLimit: 1,
-        );
+        final _config = await mkRetry(() => Config.di().fetch(), tryLimit: 1);
         MkSettings.setConfig(_config);
-
-        dispatcher(
-          BootstrapAsyncSuccessAction(
-            config: _config,
-          ),
-        );
+        dispatcher(BootstrapAsyncSuccessAction(config: _config));
       } catch (error) {
         MkLogger.d("$error");
-        dispatcher(
-          BootstrapAsyncFailureAction(MkStrings.genericError(error)),
-        );
+        dispatcher(BootstrapAsyncFailureAction(MkStrings.genericError(error)));
       }
     }
     return action;

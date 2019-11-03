@@ -6,9 +6,7 @@ import 'package:voute/models/config.dart';
 part 'bootstrap.g.dart';
 
 abstract class BootstrapState implements Built<BootstrapState, BootstrapStateBuilder> {
-  factory BootstrapState([
-    void updates(BootstrapStateBuilder b),
-  ]) = _$BootstrapState;
+  factory BootstrapState([void updates(BootstrapStateBuilder b)]) = _$BootstrapState;
 
   factory BootstrapState.initialState() => _$BootstrapState(
         (BootstrapStateBuilder b) => b
@@ -22,8 +20,11 @@ abstract class BootstrapState implements Built<BootstrapState, BootstrapStateBui
 
   @nullable
   ConfigModel get config;
+
   BootstrapStatus get status;
+
   String get message;
+
   @nullable
   String get error;
 

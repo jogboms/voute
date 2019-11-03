@@ -6,7 +6,7 @@ import 'package:voute/constants/mk_images.dart';
 import 'package:voute/constants/mk_strings.dart';
 import 'package:voute/constants/mk_style.dart';
 import 'package:voute/rebloc/actions/bootstrap.dart';
-import 'package:voute/rebloc/states/main.dart';
+import 'package:voute/rebloc/states/app.dart';
 import 'package:voute/rebloc/view_models/bootstrap.dart';
 import 'package:voute/screens/dashboard/dashboard_page.dart';
 import 'package:voute/utils/mk_linear_gradient.dart';
@@ -33,14 +33,8 @@ class SplashPage extends StatelessWidget {
         body: Stack(
           fit: StackFit.expand,
           children: <Widget>[
-            const DecoratedBox(
-              decoration: BoxDecoration(
-                gradient: MkLinearGradient(),
-              ),
-            ),
-            Center(
-              child: Image(image: MkImages.logo),
-            ),
+            const DecoratedBox(decoration: BoxDecoration(gradient: MkLinearGradient())),
+            Center(child: Image(image: MkImages.logo)),
             Positioned.fill(
               top: null,
               bottom: MediaQuery.of(context).padding.bottom + sh(24.0),
@@ -48,17 +42,11 @@ class SplashPage extends StatelessWidget {
                 children: <Widget>[
                   const _MainView(),
                   SizedBox(height: sh(24)),
-                  Text(
-                    "VOÛTE",
-                    style: theme.title.copyWith(color: Colors.white, letterSpacing: 6),
-                  ),
+                  Text("VOÛTE", style: theme.title.copyWith(color: Colors.white, letterSpacing: 6)),
                   SizedBox(height: sh(2)),
                   Text(
                     MkSettings.getVersion(),
-                    style: theme.xxsmall.copyWith(
-                      color: Colors.white.withOpacity(.69),
-                      letterSpacing: 2,
-                    ),
+                    style: theme.xxsmall.copyWith(color: Colors.white.withOpacity(.69), letterSpacing: 2),
                   ),
                 ],
               ),
@@ -71,26 +59,18 @@ class SplashPage extends StatelessWidget {
 }
 
 class _MainView extends StatelessWidget {
-  const _MainView({
-    Key key,
-  }) : super(key: key);
+  const _MainView({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ViewModelSubscriber<AppState, BootstrapViewModel>(
       converter: (AppState state) => BootstrapViewModel(state),
-      builder: (
-        BuildContext context,
-        DispatchFunction dispatcher,
-        BootstrapViewModel viewModel,
-      ) {
+      builder: (BuildContext context, DispatchFunction dispatcher, BootstrapViewModel viewModel) {
         if (viewModel.hasError) {
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: sw(48)),
             child: GestureDetector(
-              onTap: () {
-                dispatcher(const BootstrapAsyncInitAction());
-              },
+              onTap: () => dispatcher(const BootstrapAsyncInitAction()),
               child: Text(
                 MkStrings.genericError(viewModel.error) + "\n Tap to retry.",
                 style: mkFont(14, Colors.white.withOpacity(.75)),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart' show MaterialColor;
 import 'package:flutter/widgets.dart';
 
 class MkColors {
-  MkColors._();
   static const _basePrimary = 0xFF26D1F6;
   static const _baseAccent = 0xFF26f6b4;
   static const MaterialColor dark = MaterialColor(

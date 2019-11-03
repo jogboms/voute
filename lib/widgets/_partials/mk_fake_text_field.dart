@@ -34,20 +34,13 @@ class MkFakeTextField<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     final _theme = MkTheme.of(context);
     return FormField<T>(
-      initialValue:
-          // initialValue != null && initialValue.isNotEmpty
-          initialValue != null ? initialValue : null,
+      initialValue: initialValue != null ? initialValue : null,
       autovalidate: autovalidate,
       builder: (FormFieldState<T> field) {
         final effectiveDecoration = decoration.applyDefaults(Theme.of(context).inputDecorationTheme).copyWith(
               contentPadding: padding,
               errorText: field.errorText,
-              suffixIcon: icon != null
-                  ? Icon(
-                      icon,
-                      color: kHintColor,
-                    )
-                  : null,
+              suffixIcon: icon != null ? Icon(icon, color: kHintColor) : null,
             );
         return InkWell(
           onTap: isEnabled
