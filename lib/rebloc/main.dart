@@ -5,7 +5,7 @@ import 'package:voute/rebloc/blocs/bootstrap.dart';
 import 'package:voute/rebloc/blocs/initialize.dart';
 import 'package:voute/rebloc/blocs/logger.dart';
 import 'package:voute/rebloc/blocs/user.dart';
-import 'package:voute/rebloc/states/main.dart';
+import 'package:voute/rebloc/states/app.dart';
 import 'package:voute/rebloc/states/user.dart';
 
 Store<AppState> reblocStore({UserModel user}) {

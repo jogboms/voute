@@ -34,20 +34,13 @@ class MkFakeTextField<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     final _theme = MkTheme.of(context);
     return FormField<T>(
-      initialValue:
-          // initialValue != null && initialValue.isNotEmpty
-          initialValue != null ? initialValue : null,
+      initialValue: initialValue != null ? initialValue : null,
       autovalidate: autovalidate,
       builder: (FormFieldState<T> field) {
-        final effectiveDecoration = decoration
-            .applyDefaults(Theme.of(context).inputDecorationTheme)
-            .copyWith(
+        final effectiveDecoration = decoration.applyDefaults(Theme.of(context).inputDecorationTheme).copyWith(
               contentPadding: padding,
               errorText: field.errorText,
-              suffixIcon: icon != null ? Icon(
-                icon,
-                color: kHintColor,
-              ): null,
+              suffixIcon: icon != null ? Icon(icon, color: kHintColor) : null,
             );
         return InkWell(
           onTap: isEnabled
@@ -64,14 +57,10 @@ class MkFakeTextField<T> extends StatelessWidget {
                   () {
                     if (field.value != null) {
                       if (field.value is List) {
-                        return (field.value as List).isNotEmpty
-                            ? "Successfully Added!"
-                            : hint;
+                        return (field.value as List).isNotEmpty ? "Successfully Added!" : hint;
                       }
                       if (field.value is String) {
-                        return (field.value as String).isNotEmpty
-                            ? field.value.toString()
-                            : hint;
+                        return (field.value as String).isNotEmpty ? field.value.toString() : hint;
                       }
                       return field.value.toString();
                     }
@@ -81,13 +70,9 @@ class MkFakeTextField<T> extends StatelessWidget {
                     if (!isEnabled) {
                       return _theme.title;
                     }
-                    if ((field.value != null &&
-                            field.value is! List &&
-                            field.value is! String) ||
-                        (field.value is List &&
-                            (field.value as List).isNotEmpty) ||
-                        (field.value is String &&
-                            (field.value as String).isNotEmpty)) {
+                    if ((field.value != null && field.value is! List && field.value is! String) ||
+                        (field.value is List && (field.value as List).isNotEmpty) ||
+                        (field.value is String && (field.value as String).isNotEmpty)) {
                       return _theme.textfield;
                     }
 

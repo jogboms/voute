@@ -10,14 +10,8 @@ class MkLinearGradient extends LinearGradient {
           begin: begin,
           end: end,
           colors: inverse
-              ? const [
-                  MkColors.gradient_end,
-                  MkColors.gradient_start,
-                ]
-              : const [
-                  MkColors.gradient_start,
-                  MkColors.gradient_end,
-                ],
+              ? const [MkColors.gradient_end, MkColors.gradient_start]
+              : const [MkColors.gradient_start, MkColors.gradient_end],
         );
 
   const MkLinearGradient.reverse()
@@ -38,9 +32,6 @@ class MkLinearGradient extends LinearGradient {
       : super(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [
-            MkColors.gradient_start.withOpacity(.5),
-            MkColors.gradient_start.withOpacity(.025),
-          ],
+          colors: [MkColors.gradient_start.withOpacity(.5), MkColors.gradient_start.withOpacity(.025)],
         );
 }

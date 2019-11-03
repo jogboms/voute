@@ -5,11 +5,7 @@ import 'package:voute/utils/mk_theme.dart';
 import 'package:voute/widgets/_partials/mk_clear_button.dart';
 
 class MkBackButton extends StatelessWidget {
-  const MkBackButton({
-    Key key,
-    this.color,
-    this.onPop,
-  }) : super(key: key);
+  const MkBackButton({Key key, this.color, this.onPop}) : super(key: key);
 
   final Color color;
   final VoidCallback onPop;

@@ -49,9 +49,7 @@ class _AccountsPageState extends State<AccountsPage> {
 }
 
 class _AccountItem extends StatelessWidget {
-  const _AccountItem({
-    Key key,
-  }) : super(key: key);
+  const _AccountItem({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -62,19 +60,13 @@ class _AccountItem extends StatelessWidget {
       borderRadius: BorderRadius.circular(4),
       clipBehavior: Clip.hardEdge,
       child: InkWell(
-        onTap: () {
-          //
-        },
+        onTap: () {},
         child: SizedBox(
           height: sh(60),
           child: Row(
             children: <Widget>[
               SizedBox(width: sh(16)),
-              Icon(
-                FeatherIcons.instagram,
-                size: ss(32),
-                color: MkColors.light_grey,
-              ),
+              Icon(FeatherIcons.instagram, size: ss(32), color: MkColors.light_grey),
               SizedBox(width: sh(16)),
               Expanded(
                 child: Column(
@@ -83,8 +75,7 @@ class _AccountItem extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       "First Bank",
-                      style: theme.body3Medium
-                          .copyWith(color: MkColors.light_grey),
+                      style: theme.body3Medium.copyWith(color: MkColors.light_grey),
                     ),
                     Text(
                       "09152437489",
@@ -95,9 +86,7 @@ class _AccountItem extends StatelessWidget {
               ),
               MkIconButton(
                 icon: FeatherIcons.moreHorizontal,
-                onPressed: () {
-                  //
-                },
+                onPressed: () {},
               ),
             ],
           ),

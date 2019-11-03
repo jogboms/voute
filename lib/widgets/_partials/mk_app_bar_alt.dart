@@ -6,10 +6,7 @@ import 'package:voute/utils/mk_screen_util.dart';
 import 'package:voute/widgets/_partials/mk_icon_button.dart';
 
 class MkSearchBarRow extends StatelessWidget {
-  const MkSearchBarRow({
-    Key key,
-    this.trailing,
-  }) : super(key: key);
+  const MkSearchBarRow({Key key, this.trailing}) : super(key: key);
 
   final Widget trailing;
 
@@ -21,11 +18,7 @@ class MkSearchBarRow extends StatelessWidget {
           child: TextField(
             decoration: InputDecoration(
               prefixIcon: Icon(FeatherIcons.search),
-              suffixIcon: MkIconButton(
-                icon: FeatherIcons.xCircle,
-                color: Colors.black12,
-                onPressed: () {},
-              ),
+              suffixIcon: MkIconButton(icon: FeatherIcons.xCircle, color: Colors.black12, onPressed: () {}),
             ),
           ),
         ),
@@ -39,10 +32,8 @@ class MkSearchBarRow extends StatelessWidget {
 }
 
 class MkSliverAppBarAlt extends StatelessWidget {
-  const MkSliverAppBarAlt({
-    Key key,
-    @required this.child,
-  })  : assert(child != null),
+  const MkSliverAppBarAlt({Key key, @required this.child})
+      : assert(child != null),
         super(key: key);
 
   final Widget child;
@@ -69,10 +60,8 @@ class MkSliverAppBarAlt extends StatelessWidget {
 }
 
 class _AppBar extends StatelessWidget implements PreferredSizeWidget {
-  const _AppBar({
-    Key key,
-    @required this.child,
-  })  : assert(child != null),
+  const _AppBar({Key key, @required this.child})
+      : assert(child != null),
         super(key: key);
 
   final Widget child;
@@ -80,12 +69,7 @@ class _AppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(
-        top: sh(4),
-        bottom: sh(4),
-        left: sw(16),
-        right: sw(16),
-      ),
+      padding: EdgeInsets.only(top: sh(4), bottom: sh(4), left: sw(16), right: sw(16)),
       child: child,
     );
   }

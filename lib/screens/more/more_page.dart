@@ -61,9 +61,7 @@ class _MenuItem extends StatelessWidget {
       borderRadius: BorderRadius.circular(4),
       clipBehavior: Clip.hardEdge,
       child: ListTile(
-        onTap: () {
-          //
-        },
+        onTap: () {},
         leading: Icon(FeatherIcons.plusSquare),
         title: Text(
           "Item",

@@ -3,10 +3,7 @@ import 'package:voute/utils/mk_screen_util.dart';
 import 'package:voute/utils/mk_theme.dart';
 
 class SuccessMessageDialog extends StatelessWidget {
-  const SuccessMessageDialog({
-    Key key,
-    @required this.message,
-  }) : super(key: key);
+  const SuccessMessageDialog({Key key, @required this.message}) : super(key: key);
 
   final String message;
 
@@ -14,18 +11,13 @@ class SuccessMessageDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     final MkTheme theme = MkTheme.of(context);
     return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: sw(64),
-      ),
+      padding: EdgeInsets.symmetric(horizontal: sw(64)),
       child: Center(
         child: Material(
           borderRadius: BorderRadius.circular(4),
           color: Colors.white,
           child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: sw(32),
-              vertical: sh(36),
-            ),
+            padding: EdgeInsets.symmetric(horizontal: sw(32), vertical: sh(36)),
             child: Opacity(
               opacity: .75,
               child: Column(
@@ -33,10 +25,7 @@ class SuccessMessageDialog extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  SizedBox.fromSize(
-                    size: Size.square(sf(100.0)),
-                    child: Icon(Icons.check),
-                  ),
+                  SizedBox.fromSize(size: Size.square(sf(100.0)), child: Icon(Icons.check)),
                   if (message != null) ...[
                     SizedBox(height: sh(16.0)),
                     Text(

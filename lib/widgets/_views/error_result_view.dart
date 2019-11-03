@@ -5,18 +5,10 @@ import 'package:voute/utils/mk_screen_util.dart';
 import 'package:voute/utils/mk_theme.dart';
 
 class ErrorResultView extends StatelessWidget {
-  const ErrorResultView({
-    Key key,
-    this.error,
-    // this.onRetry,
-  }) : super(key: key);
+  const ErrorResultView({Key key, this.error}) : super(key: key);
 
   /// An Exception or Error Object
   final dynamic error;
-
-  /// TODO
-  /// If this exist, show, "tap to retry"
-  // final VoidCallback onRetry;
 
   @override
   Widget build(BuildContext context) {
@@ -28,11 +20,7 @@ class ErrorResultView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Icon(
-            Icons.error_outline,
-            color: MkColors.danger,
-            size: sf(50.0),
-          ),
+          Icon(Icons.error_outline, color: MkColors.danger, size: sf(50.0)),
           SizedBox(height: sh(16.0)),
           Text(
             error != null

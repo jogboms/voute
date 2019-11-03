@@ -3,13 +3,9 @@ import 'package:voute/environments/environment.dart';
 import 'package:voute/widgets/app.dart';
 import 'package:voute/widgets/bootstrap.dart';
 
-void main({
-  Environment environment = Environment.MOCK,
-  int delay = 0,
-}) async {
+void main({Env environment = Env.MOCK, int delay = 0}) async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Future<dynamic>.delayed(Duration(seconds: delay));
 
-  runApp(
-    App(bootstrap: await bootstrap(environment)),
-  );
+  runApp(App(bootstrap: await bootstrap(environment)));
 }

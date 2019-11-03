@@ -1,10 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 class KeyboardWrapperView extends StatelessWidget {
-  const KeyboardWrapperView({
-    Key key,
-    @required this.child,
-  }) : super(key: key);
+  const KeyboardWrapperView({Key key, @required this.child}) : super(key: key);
 
   final Widget child;
 

@@ -1,21 +1,22 @@
+import 'package:after_layout/after_layout.dart';
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rebloc/rebloc.dart';
 import 'package:voute/constants/mk_colors.dart';
 import 'package:voute/constants/mk_routes.dart';
+import 'package:voute/environments/environment.dart';
 import 'package:voute/models/user/user.dart';
 import 'package:voute/rebloc/actions/common.dart';
-import 'package:voute/rebloc/states/main.dart';
+import 'package:voute/rebloc/states/app.dart';
 import 'package:voute/screens/accounts/accounts_page.dart';
 import 'package:voute/screens/cards/cards_page.dart';
 import 'package:voute/screens/home/home_page.dart';
 import 'package:voute/screens/more/more_page.dart';
 import 'package:voute/screens/people/people_page.dart';
-import 'package:voute/utils/mk_after_layout_provider.dart';
+import 'package:voute/utils/mk_first_time_login_check.dart';
 import 'package:voute/utils/mk_navigate.dart';
 import 'package:voute/utils/mk_screen_util.dart';
-import 'package:voute/utils/mk_settings.dart';
 import 'package:voute/utils/mk_status_bar.dart';
 import 'package:voute/widgets/_views/keyboard_wrapper_view.dart';
 
@@ -30,7 +31,7 @@ class DashboardPage extends StatefulWidget {
   static void onNavigate(BuildContext context, UserModel user) {
     Navigator.pushAndRemoveUntil<void>(
       context,
-      MkPageRoute.fadeIn<void>(
+      MkNavigate.fadeIn<void>(
         DashboardPage(user: user),
         settings: RouteSettings(name: MkRoutes.dashboard),
       ),
@@ -38,15 +39,13 @@ class DashboardPage extends StatefulWidget {
     );
   }
 
-  static DashboardPageState of(BuildContext context) =>
-      Provider.of<DashboardPageState>(context);
+  static DashboardPageState of(BuildContext context) => Provider.of<DashboardPageState>(context);
 
   @override
   DashboardPageState createState() => DashboardPageState();
 }
 
-class DashboardPageState extends State<DashboardPage>
-    with TickerProviderStateMixin, MkAfterFirstLayoutProvider {
+class DashboardPageState extends State<DashboardPage> with TickerProviderStateMixin, AfterLayoutMixin {
   final List<int> _navHistory = [];
   int _currentPageIndex = 2;
   TabController _controller;
@@ -64,30 +63,21 @@ class DashboardPageState extends State<DashboardPage>
   void initState() {
     super.initState();
     _tabViews = [
-      const AccountsPage(key: const PageStorageKey("accounts")),
-      const CardsPage(key: const PageStorageKey("cards")),
-      const HomePage(key: const PageStorageKey("home")),
-      const PeoplePage(key: const PageStorageKey("people")),
-      const MorePage(key: const PageStorageKey("more")),
+      const AccountsPage(key: PageStorageKey("accounts")),
+      const CardsPage(key: PageStorageKey("cards")),
+      const HomePage(key: PageStorageKey("home")),
+      const PeoplePage(key: PageStorageKey("people")),
+      const MorePage(key: PageStorageKey("more")),
     ];
-    _controller = TabController(
-        vsync: this, initialIndex: _currentPageIndex, length: _tabViews.length)
+    _controller = TabController(vsync: this, initialIndex: _currentPageIndex, length: _tabViews.length)
       ..addListener(_pageListener);
   }
 
   @override
   void afterFirstLayout(BuildContext context) async {
-    // TODO: might need this
-    // await Users.di().fcmRegister();
-
-    await MkSettings.checkIsFirstTimeLogin().then<bool>(
-      (bool isFirstTimeLogin) {
-        return Future<bool>.delayed(
-          const Duration(seconds: 3),
-          () => isFirstTimeLogin,
-        );
-      },
-    ).then((bool isFirstTimeLogin) async {});
+    await MkFirstTimeLoginCheck.check(Environment.di())
+        .then<bool>((bool isFirstTimeLogin) => Future<bool>.delayed(const Duration(seconds: 3), () => isFirstTimeLogin))
+        .then((bool isFirstTimeLogin) async {});
   }
 
   @override
@@ -136,29 +126,20 @@ class DashboardPageState extends State<DashboardPage>
           ),
           bottomNavigationBar: SizedBox(
             height: ss(56) + MkScreenUtil().safeArea.bottom,
-            child: _TabBar(
-              currentIndex: _controller.index,
-              onNavigate: goToTab,
-              tabs: _tabIcons,
-            ),
+            child: _TabBar(currentIndex: _controller.index, onNavigate: goToTab, tabs: _tabIcons),
           ),
         ),
       ),
     );
 
     return FirstBuildDispatcher<AppState>(
-      action:
-          widget.user != null ? OnLoginAction(widget.user) : const VoidAction(),
+      action: widget.user != null ? OnLoginAction(widget.user) : const VoidAction(),
       child: child,
     );
   }
 
   void goToTab(int index) {
-    _controller.animateTo(
-      index,
-      duration: const Duration(milliseconds: 150),
-      curve: Curves.decelerate,
-    );
+    _controller.animateTo(index, duration: const Duration(milliseconds: 150), curve: Curves.decelerate);
   }
 }
 

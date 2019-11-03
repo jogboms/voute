@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'main.dart';
+part of 'app.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -15,23 +15,19 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
   final String wireName = 'AppState';
 
   @override
-  Iterable serialize(Serializers serializers, AppState object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable serialize(Serializers serializers, AppState object, {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
       'user',
-      serializers.serialize(object.user,
-          specifiedType: const FullType(UserState)),
+      serializers.serialize(object.user, specifiedType: const FullType(UserState)),
       'bootstrap',
-      serializers.serialize(object.bootstrap,
-          specifiedType: const FullType(BootstrapState)),
+      serializers.serialize(object.bootstrap, specifiedType: const FullType(BootstrapState)),
     ];
 
     return result;
   }
 
   @override
-  AppState deserialize(Serializers serializers, Iterable serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+  AppState deserialize(Serializers serializers, Iterable serialized, {FullType specifiedType = FullType.unspecified}) {
     final result = new AppStateBuilder();
 
     final iterator = serialized.iterator;
@@ -41,12 +37,11 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
       final dynamic value = iterator.current;
       switch (key) {
         case 'user':
-          result.user.replace(serializers.deserialize(value,
-              specifiedType: const FullType(UserState)) as UserState);
+          result.user.replace(serializers.deserialize(value, specifiedType: const FullType(UserState)) as UserState);
           break;
         case 'bootstrap':
-          result.bootstrap.replace(serializers.deserialize(value,
-              specifiedType: const FullType(BootstrapState)) as BootstrapState);
+          result.bootstrap
+              .replace(serializers.deserialize(value, specifiedType: const FullType(BootstrapState)) as BootstrapState);
           break;
       }
     }
@@ -61,8 +56,7 @@ class _$AppState extends AppState {
   @override
   final BootstrapState bootstrap;
 
-  factory _$AppState([void Function(AppStateBuilder) updates]) =>
-      (new AppStateBuilder()..update(updates)).build();
+  factory _$AppState([void Function(AppStateBuilder) updates]) => (new AppStateBuilder()..update(updates)).build();
 
   _$AppState._({this.user, this.bootstrap}) : super._() {
     if (user == null) {
@@ -74,8 +68,7 @@ class _$AppState extends AppState {
   }
 
   @override
-  AppState rebuild(void Function(AppStateBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+  AppState rebuild(void Function(AppStateBuilder) updates) => (toBuilder()..update(updates)).build();
 
   @override
   AppStateBuilder toBuilder() => new AppStateBuilder()..replace(this);
@@ -83,9 +76,7 @@ class _$AppState extends AppState {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is AppState &&
-        user == other.user &&
-        bootstrap == other.bootstrap;
+    return other is AppState && user == other.user && bootstrap == other.bootstrap;
   }
 
   @override
@@ -95,10 +86,7 @@ class _$AppState extends AppState {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('AppState')
-          ..add('user', user)
-          ..add('bootstrap', bootstrap))
-        .toString();
+    return (newBuiltValueToStringHelper('AppState')..add('user', user)..add('bootstrap', bootstrap)).toString();
   }
 }
 
@@ -110,10 +98,8 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
   set user(UserStateBuilder user) => _$this._user = user;
 
   BootstrapStateBuilder _bootstrap;
-  BootstrapStateBuilder get bootstrap =>
-      _$this._bootstrap ??= new BootstrapStateBuilder();
-  set bootstrap(BootstrapStateBuilder bootstrap) =>
-      _$this._bootstrap = bootstrap;
+  BootstrapStateBuilder get bootstrap => _$this._bootstrap ??= new BootstrapStateBuilder();
+  set bootstrap(BootstrapStateBuilder bootstrap) => _$this._bootstrap = bootstrap;
 
   AppStateBuilder();
 
@@ -143,8 +129,7 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
   _$AppState build() {
     _$AppState _$result;
     try {
-      _$result = _$v ??
-          new _$AppState._(user: user.build(), bootstrap: bootstrap.build());
+      _$result = _$v ?? new _$AppState._(user: user.build(), bootstrap: bootstrap.build());
     } catch (_) {
       String _$failedField;
       try {
@@ -153,8 +138,7 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
         _$failedField = 'bootstrap';
         bootstrap.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            'AppState', _$failedField, e.toString());
+        throw new BuiltValueNestedFieldError('AppState', _$failedField, e.toString());
       }
       rethrow;
     }

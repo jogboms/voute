@@ -9,7 +9,6 @@ class ConfigImpl extends Config {
   @override
   Future<ConfigModel> fetch() async {
     final response = await MkHttp.get('/settings');
-    final res = MkResponseWrapper<dynamic>(response);
-    return ConfigModel.fromJson(res.rawData);
+    return MkResponseWrapper<ConfigModel>(response, onTransform: ConfigModel.fromJson).data;
   }
 }

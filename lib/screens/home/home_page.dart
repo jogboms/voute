@@ -11,8 +11,6 @@ import 'package:voute/widgets/_partials/mk_app_bar_alt.dart';
 import 'package:voute/widgets/_partials/mk_clear_button.dart';
 import 'package:voute/widgets/_partials/mk_icon_button.dart';
 
-const double _kCardShadowOffset = 24;
-
 class HomePage extends StatefulWidget {
   const HomePage({Key key}) : super(key: key);
 
@@ -44,13 +42,13 @@ class _HomePageState extends State<HomePage> {
             delegate: SliverChildListDelegate(
               [
                 SizedBox(
-                  height: sh(kCardItemHeight) + _kCardShadowOffset,
+                  height: sh(cardItemHeight) + _cardShadowOffset,
                   child: Swiper(
                     viewportFraction: 0.825,
                     scale: .85,
                     itemBuilder: (BuildContext context, int index) {
                       return Padding(
-                        padding: EdgeInsets.only(bottom: _kCardShadowOffset),
+                        padding: EdgeInsets.only(bottom: _cardShadowOffset),
                         child: CardItem(
                           index: index,
                           elevation: 16,
@@ -98,9 +96,7 @@ class _HomePageState extends State<HomePage> {
 }
 
 class _BankItem extends StatelessWidget {
-  const _BankItem({
-    Key key,
-  }) : super(key: key);
+  const _BankItem({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -112,17 +108,11 @@ class _BankItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(4),
         clipBehavior: Clip.hardEdge,
         child: InkWell(
-          onTap: () {
-            //
-          },
+          onTap: () {},
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              Icon(
-                FeatherIcons.instagram,
-                size: ss(54),
-                color: MkColors.light_grey,
-              ),
+              Icon(FeatherIcons.instagram, size: ss(54), color: MkColors.light_grey),
               Text(
                 "First Bank",
                 style: MkTheme.of(context).smallMedium,
@@ -179,3 +169,5 @@ class _TitleContentBlock extends StatelessWidget {
     );
   }
 }
+
+const double _cardShadowOffset = 24;

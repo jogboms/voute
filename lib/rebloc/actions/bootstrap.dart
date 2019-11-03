@@ -1,15 +1,13 @@
-import 'package:voute/models/config.dart';
 import 'package:meta/meta.dart';
 import 'package:rebloc/rebloc.dart';
+import 'package:voute/models/config.dart';
 
 class BootstrapAsyncLoadingAction extends Action {
   const BootstrapAsyncLoadingAction();
 }
 
 class BootstrapAsyncSuccessAction extends Action {
-  const BootstrapAsyncSuccessAction({
-    @required this.config,
-  });
+  const BootstrapAsyncSuccessAction({@required this.config});
 
   final ConfigModel config;
 }

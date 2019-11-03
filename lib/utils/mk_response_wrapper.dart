@@ -1,155 +1,93 @@
-import 'dart:convert' show json;
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:voute/constants/mk_strings.dart';
+import 'package:voute/environments/environment.dart';
 import 'package:voute/models/main.dart';
-import 'package:voute/utils/mk_exception.dart';
-import 'package:voute/utils/mk_settings.dart';
+import 'package:voute/utils/mk_exceptions.dart';
 
-typedef T TransformFunction<T>(dynamic data, String message);
+typedef TransformFunction<T> = T Function(Map<String, dynamic> data);
 
-class NoInternetException extends MkResponseException {
-  NoInternetException()
-      : super(HttpStatus.serviceUnavailable, MkStrings.networkError);
-}
-
-class ForbiddenException extends MkResponseException {
-  ForbiddenException([String message]) : super(HttpStatus.forbidden, message);
-}
-
-class TimeOutException extends MkResponseException {
-  TimeOutException()
-      : super(HttpStatus.requestTimeout, MkStrings.timeoutErrorMessage);
-}
-
-class BadRequestException extends MkResponseException {
-  BadRequestException([String message]) : super(HttpStatus.badRequest, message);
-}
-
-class FileTooLargeException extends MkResponseException {
-  FileTooLargeException()
-      : super(HttpStatus.requestEntityTooLarge, MkStrings.isTooLargeMessage);
-}
-
-class NotAuthorisedException extends MkResponseException {
-  NotAuthorisedException([String message])
-      : super(HttpStatus.unauthorized, message);
-}
-
-class MkResponseException implements MkException {
-  MkResponseException(this.statusCode, [this.message]);
-
-  final int statusCode;
-  @override
-  final String message;
-
-  @override
-  String toString() => '$runtimeType($statusCode, $message)';
-}
-
-class MkResponseWrapper<T> {
-  MkResponseWrapper(
-    this._response, {
-    TransformFunction<T> onTransform,
-    bool showThrow = true,
-  }) {
+class MkResponseWrapper<T extends ModelInterface> with ModelInterface {
+  factory MkResponseWrapper(http.Response _response, {TransformFunction<T> onTransform, bool shouldThrow = true}) {
+    final isDev = Environment.di().isDev;
+    final status = _Status(_response.statusCode);
     try {
-      final dynamic responseJson = json.decode(_response.body);
-      message = responseJson != null && responseJson["message"] != null
-          ? responseJson["message"]
-          : MkSettings.isDev ? _response.reasonPhrase : MkStrings.errorMessage;
-      rawData = _response.statusCode < 300 ? responseJson["data"] : null;
-      _authorizationToken = responseJson["authorization_token"];
+      final Map<String, dynamic> responseJson = Model.stringToMap(_response.body);
+
+      if (responseJson == null || status.isNotOk) {
+        throw MkResponseException(status.code, isDev ? _response.reasonPhrase : MkStrings.errorMessage);
+      }
+
+      return MkResponseWrapper._(
+        status: status,
+        message: _response.reasonPhrase,
+        data: onTransform != null ? onTransform(responseJson["data"]) : null,
+      );
     } catch (e) {
-      message =
-          _response.statusCode == HttpStatus.badGateway && !MkSettings.isDev
-              ? MkStrings.errorMessage
-              : e.toString();
-      rawData = null;
-      _authorizationToken = null;
-      if (showThrow) {
-        throw MkResponseException(_response.statusCode, message);
-      }
-    }
+      final message = status.code == HttpStatus.badGateway && !isDev ? MkStrings.errorMessage : e.toString();
 
-    if (showThrow) {
-      if (isForbidden) {
-        throw ForbiddenException(message);
-      }
+      if (shouldThrow) {
+        if (status.isForbidden) {
+          throw ForbiddenException(message);
+        }
 
-      if (isNotAuthorized) {
-        throw NotAuthorisedException(message);
-      }
+        if (status.isNotAuthorized) {
+          throw UnAuthorisedException(message);
+        }
 
-      if (isBadRequest) {
-        throw BadRequestException(message);
+        if (status.isBadRequest) {
+          throw BadRequestException(message);
+        }
+
+        if (status.isTooLarge) {
+          throw FileTooLargeException();
+        }
+
+        throw MkResponseException(status.code, message);
       }
 
-      if (isTooLarge) {
-        throw FileTooLargeException();
-      }
-
-      if (isNotOk) {
-        throw MkResponseException(_response.statusCode, message);
-      }
-    }
-
-    if (onTransform != null) {
-      data = onTransform(rawData, message);
+      return MkResponseWrapper._(status: status, message: message);
     }
   }
 
   factory MkResponseWrapper.mock(T data, [int statusCode = 200]) {
     return MkResponseWrapper<T>(
       http.Response(
-        Model.mapToString(
-          <String, dynamic>{
-            "message": "Awesome",
-            "data": data.toString(),
-          },
-        ),
+        Model.mapToString(<String, dynamic>{"message": "Awesome", "data": data.toString()}),
         statusCode,
       ),
-      onTransform: (dynamic _, __) => data,
+      onTransform: (_) => data,
     );
   }
 
-  final http.Response _response;
-  String message;
-  dynamic rawData;
-  dynamic _authorizationToken;
-  T data;
+  MkResponseWrapper._({@required this.status, @required this.message, this.data});
 
-  int get statusCode => _response.statusCode;
+  final _Status status;
+  final String message;
+  final T data;
 
-  String get reasonPhrase => _response.reasonPhrase;
+  @override
+  Map<String, dynamic> toMap() => <String, dynamic>{"status": status.code, "message": message, "data": data?.toMap()};
+}
 
-  String get token =>
-      _authorizationToken != null ? _authorizationToken["token"] : null;
+class _Status {
+  _Status(this.code);
 
-  bool get isOk {
-    if (statusCode >= 200 && statusCode < 300) {
-      return true;
-    } else if (statusCode >= 400 && statusCode < 500) {
-      return false;
-    } else if (statusCode >= 500) {
-      return false;
-    }
-    return false;
-  }
+  final int code;
+
+  bool get isOk => code >= HttpStatus.ok && code < HttpStatus.multipleChoices;
 
   bool get isNotOk => !isOk;
 
-  bool get isBadRequest => statusCode == HttpStatus.badRequest;
+  bool get isBadRequest => code == HttpStatus.badRequest;
 
-  bool get isNotFound => statusCode == HttpStatus.notFound;
+  bool get isNotFound => code == HttpStatus.notFound;
 
-  bool get isNotAcceptable => statusCode == HttpStatus.notAcceptable;
+  bool get isNotAuthorized => code == HttpStatus.unauthorized;
 
-  bool get isNotAuthorized => statusCode == HttpStatus.unauthorized;
+  bool get isForbidden => code == HttpStatus.forbidden;
 
-  bool get isForbidden => statusCode == HttpStatus.forbidden;
-
-  bool get isTooLarge => statusCode == HttpStatus.requestEntityTooLarge;
+  bool get isTooLarge => code == HttpStatus.requestEntityTooLarge;
 }

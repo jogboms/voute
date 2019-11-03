@@ -5,9 +5,7 @@ import 'package:voute/models/serializers.dart';
 
 part 'user.g.dart';
 
-abstract class UserModel
-    with ModelInterface
-    implements Built<UserModel, UserModelBuilder> {
+abstract class UserModel with ModelInterface implements Built<UserModel, UserModelBuilder> {
   factory UserModel([
     void updates(UserModelBuilder b),
   ]) = _$UserModel;
@@ -30,11 +28,9 @@ abstract class UserModel
   DateTime get updatedAt;
 
   @override
-  Map<String, dynamic> toMap() =>
-      serializers.serializeWith(UserModel.serializer, this);
+  Map<String, dynamic> toMap() => serializers.serializeWith(UserModel.serializer, this);
 
-  static UserModel fromJson(Map<String, dynamic> map) =>
-      serializers.deserializeWith(UserModel.serializer, map);
+  static UserModel fromJson(Map<String, dynamic> map) => serializers.deserializeWith(UserModel.serializer, map);
 
   static Serializer<UserModel> get serializer => _$userModelSerializer;
 }
