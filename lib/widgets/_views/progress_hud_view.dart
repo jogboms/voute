@@ -24,7 +24,6 @@ class ProgressHudView extends StatelessWidget {
   static _ProgressHudViewState of(BuildContext context) {
     final config = Provider.of<_Config>(context);
     return _ProgressHudViewState(
-      context,
       opacity: config.opacity,
       backgroundColor: config.backgroundColor,
       color: config.color,
@@ -41,14 +40,8 @@ class ProgressHudView extends StatelessWidget {
 }
 
 class _ProgressHudViewState {
-  _ProgressHudViewState(
-    this._context, {
-    @required this.opacity,
-    @required this.backgroundColor,
-    @required this.color,
-  });
+  _ProgressHudViewState({@required this.opacity, @required this.backgroundColor, @required this.color});
 
-  final BuildContext _context;
   final double opacity;
   final Color backgroundColor;
   final Color color;
@@ -56,7 +49,6 @@ class _ProgressHudViewState {
   final _key = ValueKey("p_h_v");
 
   void show() => showOverlay(
-        _context,
         (context, _) => _BackdropWrapper(
           backgroundColor: backgroundColor,
           opacity: opacity,
@@ -66,10 +58,9 @@ class _ProgressHudViewState {
         key: _key,
       );
 
-  void hide() => showOverlay(_context, (_, v) => const SizedBox(), key: _key);
+  void hide() => showOverlay((_, v) => const SizedBox(), key: _key);
 
   void success([String message, Duration duration]) async => showOverlay(
-        _context,
         (context, _) => _BackdropWrapper(
           child: SuccessMessageDialog(message: message),
           backgroundColor: backgroundColor,
@@ -80,7 +71,6 @@ class _ProgressHudViewState {
       );
 
   void error(dynamic e, [Duration duration]) async => showOverlay(
-        _context,
         (context, _) => _BackdropWrapper(
           child: ErrorMessageDialog(error: e),
           backgroundColor: backgroundColor,

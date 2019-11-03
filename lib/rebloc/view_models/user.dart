@@ -13,8 +13,7 @@ class UserViewModel extends Equatable {
       : model = state.user.user,
         isLoading = state.user.status == UserStatus.loading,
         hasError = state.user.status == UserStatus.failure,
-        error = state.user.error,
-        super(<AppState>[state]);
+        error = state.user.error;
 
   factory UserViewModel.of(BuildContext context) => UserViewModel(StoreProvider.of<AppState>(context).states.value);
 
@@ -37,4 +36,7 @@ class UserViewModel extends Equatable {
       },
     );
   }
+
+  @override
+  List<Object> get props => [model, isLoading, hasError, error];
 }

@@ -3,7 +3,7 @@ import 'package:lumberdash/lumberdash.dart';
 import 'package:voute/utils/mk_exceptions.dart';
 
 class MkLogger {
-  static void init(bool isDebug) => putLumberdashToWork(withClient: ColorizeLumberdash());
+  static void init(bool isDebug) => putLumberdashToWork(withClients: [ColorizeLumberdash()]);
 
   static void w(String reason) => logWarning(reason);
 

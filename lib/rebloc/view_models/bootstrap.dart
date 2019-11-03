@@ -14,8 +14,7 @@ class BootstrapViewModel extends Equatable {
       : config = state.bootstrap.config,
         isLoading = state.bootstrap.status == BootstrapStatus.loading,
         hasError = state.bootstrap.status == BootstrapStatus.failure,
-        error = state.bootstrap.error,
-        super(<AppState>[state]);
+        error = state.bootstrap.error;
 
   final ConfigModel config;
   final bool isLoading;
@@ -34,4 +33,7 @@ class BootstrapViewModel extends Equatable {
       },
     );
   }
+
+  @override
+  List<Object> get props => [config, isLoading, hasError, error];
 }
