@@ -5,10 +5,10 @@ import 'package:voute/constants/mk_strings.dart';
 import 'package:voute/rebloc/actions/bootstrap.dart';
 import 'package:voute/rebloc/states/app.dart';
 import 'package:voute/rebloc/states/bootstrap.dart';
-import 'package:voute/services/config.dart';
-import 'package:voute/utils/mk_logger.dart';
+import 'package:voute/services/config/main.dart';
 import 'package:voute/utils/mk_retry.dart';
 import 'package:voute/utils/mk_settings.dart';
+import 'package:voute/utils/wrappers/mk_logger.dart';
 
 class BootstrapBloc extends SimpleBloc<AppState> {
   @override

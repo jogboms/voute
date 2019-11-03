@@ -9,9 +9,9 @@ import 'package:voute/rebloc/main.dart';
 import 'package:voute/rebloc/states/app.dart';
 import 'package:voute/screens/splash/splash_page.dart';
 import 'package:voute/utils/mk_screen_util.dart';
-import 'package:voute/utils/mk_theme.dart';
 import 'package:voute/widgets/_views/placeholder_view.dart';
 import 'package:voute/widgets/_views/progress_hud_view.dart';
+import 'package:voute/widgets/app_theme.dart';
 import 'package:voute/widgets/bootstrap.dart';
 
 class App extends StatefulWidget {
@@ -46,7 +46,7 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    return MkTheme(
+    return AppTheme(
       child: StoreProvider<AppState>(
         store: store,
         child: FirstBuildDispatcher<AppState>(
@@ -59,7 +59,7 @@ class _AppState extends State<App> {
                 debugShowCheckedModeBanner: false,
                 title: MkStrings.appName,
                 color: Colors.white,
-                theme: MkTheme.of(context).themeData(Theme.of(context)),
+                theme: AppTheme.of(context).themeData(Theme.of(context)),
                 builder: (_, child) => Builder(
                   builder: (BuildContext context) {
                     MkScreenUtil.initialize(context: context, config: screenConfig);

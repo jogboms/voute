@@ -6,10 +6,10 @@ import 'package:voute/screens/cards/_partials/card_item.dart';
 import 'package:voute/screens/dashboard/dashboard_page.dart';
 import 'package:voute/screens/people/_partials/person_item.dart';
 import 'package:voute/utils/mk_screen_util.dart';
-import 'package:voute/utils/mk_theme.dart';
 import 'package:voute/widgets/_partials/mk_app_bar_alt.dart';
 import 'package:voute/widgets/_partials/mk_clear_button.dart';
 import 'package:voute/widgets/_partials/mk_icon_button.dart';
+import 'package:voute/widgets/app_theme.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key key}) : super(key: key);
@@ -115,7 +115,7 @@ class _BankItem extends StatelessWidget {
               Icon(FeatherIcons.instagram, size: ss(54), color: MkColors.light_grey),
               Text(
                 "First Bank",
-                style: MkTheme.of(context).smallMedium,
+                style: AppTheme.of(context).smallMedium,
               ),
             ],
           ),
@@ -139,7 +139,7 @@ class _TitleContentBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = MkTheme.of(context);
+    final theme = AppTheme.of(context);
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: sw(20)),
       child: Column(

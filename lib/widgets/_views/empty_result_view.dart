@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:voute/constants/mk_style.dart';
-import 'package:voute/utils/mk_theme.dart';
+import 'package:voute/widgets/app_theme.dart';
 
 class EmptyResultView extends StatelessWidget {
   const EmptyResultView({Key key, this.message = "No data available"}) : super(key: key);
@@ -9,7 +9,7 @@ class EmptyResultView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MkTheme theme = MkTheme.of(context);
+    final AppTheme theme = AppTheme.of(context);
     return Opacity(
       opacity: .5,
       child: Column(

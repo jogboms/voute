@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:voute/constants/mk_colors.dart';
 import 'package:voute/constants/mk_style.dart';
 import 'package:voute/utils/mk_screen_util.dart';
-import 'package:voute/utils/mk_theme.dart';
+import 'package:voute/widgets/app_theme.dart';
 
 class MkClearButton extends StatelessWidget {
   const MkClearButton({
@@ -43,7 +43,7 @@ class MkClearButton extends StatelessWidget {
       minSize: _height ?? kButtonHeight,
       color: backgroundColor,
       borderRadius: borderRadius ?? BorderRadius.zero,
-      child: DefaultTextStyle(style: MkTheme.of(context).button.copyWith(color: color), child: child),
+      child: DefaultTextStyle(style: AppTheme.of(context).button.copyWith(color: color), child: child),
       onPressed: onPressed,
     );
   }

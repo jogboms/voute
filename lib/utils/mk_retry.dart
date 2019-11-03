@@ -1,7 +1,7 @@
 import "dart:async" show Future;
 import 'dart:io';
 
-import 'package:voute/utils/mk_exceptions.dart';
+import 'package:voute/utils/wrappers/mk_exceptions.dart';
 
 /// Calls [f] repeatedly until it doesn't throw an exception or [tryLimit] is
 /// reached (in which case the future completes with the last thrown exception).

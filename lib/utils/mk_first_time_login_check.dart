@@ -1,5 +1,5 @@
 import 'package:voute/environments/environment.dart';
-import 'package:voute/utils/mk_prefs.dart';
+import 'package:voute/utils/wrappers/mk_prefs.dart';
 
 const _isFirstTimeLogin = "IS_FIRST_TIME_LOGIN";
 

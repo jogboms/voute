@@ -15,9 +15,9 @@ import 'package:voute/screens/home/home_page.dart';
 import 'package:voute/screens/more/more_page.dart';
 import 'package:voute/screens/people/people_page.dart';
 import 'package:voute/utils/mk_first_time_login_check.dart';
-import 'package:voute/utils/mk_navigate.dart';
 import 'package:voute/utils/mk_screen_util.dart';
-import 'package:voute/utils/mk_status_bar.dart';
+import 'package:voute/utils/wrappers/mk_navigate.dart';
+import 'package:voute/widgets/_partials/mk_status_bar.dart';
 import 'package:voute/widgets/_views/keyboard_wrapper_view.dart';
 
 class DashboardPage extends StatefulWidget {

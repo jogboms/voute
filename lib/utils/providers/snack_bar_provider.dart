@@ -4,12 +4,12 @@ import 'package:voute/constants/mk_colors.dart';
 import 'package:voute/constants/mk_style.dart';
 import 'package:voute/utils/mk_screen_util.dart';
 
-class MkSnackBar {
-  MkSnackBar.of(BuildContext context)
+class SnackBarProvider {
+  SnackBarProvider.of(BuildContext context)
       : assert(context != null),
         state = Scaffold.of(context);
 
-  MkSnackBar.ofKey(GlobalKey<ScaffoldState> key)
+  SnackBarProvider.ofKey(GlobalKey<ScaffoldState> key)
       : assert(key != null),
         state = key.currentState;
 
@@ -60,10 +60,7 @@ class MkSnackBar {
         backgroundColor: backgroundColor,
         content: Row(
           children: <Widget>[
-            if (leading != null) ...[
-              leading,
-              SizedBox(width: sw(16)),
-            ],
+            if (leading != null) ...[leading, SizedBox(width: sw(16))],
             Expanded(child: Text(value, style: mkFontMedium(14.0, color))),
           ],
         ),
@@ -76,12 +73,12 @@ class MkSnackBar {
 
   void loading({Widget content, Color backgroundColor, Color color}) {
     hide();
-    state?.showSnackBar(_SnackBar(content: content, backgroundColor: backgroundColor, color: color));
+    state?.showSnackBar(_LoadingSnackBar(content: content, backgroundColor: backgroundColor, color: color));
   }
 }
 
-class _SnackBar extends SnackBar {
-  _SnackBar({Key key, Widget content, Color backgroundColor, Color color})
+class _LoadingSnackBar extends SnackBar {
+  _LoadingSnackBar({Key key, Widget content, Color backgroundColor, Color color})
       : super(
           key: key,
           backgroundColor: content == null ? Colors.white : (backgroundColor ?? kPrimaryColor),

@@ -2,8 +2,8 @@ import 'dart:math' show max;
 
 import 'package:flutter/widgets.dart';
 
-class MkSliverSeparatorBuilderDelegate extends SliverChildBuilderDelegate {
-  MkSliverSeparatorBuilderDelegate({
+class SliverSeparatorBuilderDelegate extends SliverChildBuilderDelegate {
+  SliverSeparatorBuilderDelegate({
     @required IndexedWidgetBuilder builder,
     @required IndexedWidgetBuilder separatorBuilder,
     int childCount,

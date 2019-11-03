@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:voute/constants/mk_colors.dart';
 import 'package:voute/constants/mk_style.dart';
-import 'package:voute/utils/mk_theme.dart';
 import 'package:voute/widgets/_partials/mk_back_button.dart';
 import 'package:voute/widgets/_partials/mk_close_button.dart';
+import 'package:voute/widgets/app_theme.dart';
 
 class MkAppBar extends StatelessWidget implements PreferredSizeWidget {
   const MkAppBar({
@@ -33,7 +33,7 @@ class MkAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _style = MkTheme.of(context).appBarTitle.copyWith(color: color);
+    final _style = AppTheme.of(context).appBarTitle.copyWith(color: color);
     final ModalRoute<dynamic> parentRoute = ModalRoute.of(context);
     final bool useCloseButton = parentRoute is PageRoute<dynamic> && parentRoute.fullscreenDialog;
     final Widget leadingButton =

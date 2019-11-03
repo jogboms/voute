@@ -2,7 +2,7 @@ import 'dart:async' show Future;
 
 import 'package:rebloc/rebloc.dart';
 import 'package:voute/rebloc/states/app.dart';
-import 'package:voute/utils/mk_logger.dart';
+import 'package:voute/utils/wrappers/mk_logger.dart';
 
 /// Logs each incoming action.
 class LoggerBloc extends SimpleBloc<AppState> {

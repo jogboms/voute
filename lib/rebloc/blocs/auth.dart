@@ -5,20 +5,15 @@ import 'package:voute/rebloc/actions/bootstrap.dart';
 import 'package:voute/rebloc/actions/common.dart';
 import 'package:voute/rebloc/actions/user.dart';
 import 'package:voute/rebloc/states/app.dart';
-import 'package:voute/services/users.dart';
-import 'package:voute/utils/mk_remember_me_provider.dart';
-import 'package:voute/utils/mk_settings.dart';
+import 'package:voute/services/users/main.dart';
+import 'package:voute/utils/providers/remember_me_provider.dart';
 
 class AuthBloc extends SimpleBloc<AppState> {
   @override
   Future<Action> middleware(DispatchFunction dispatcher, AppState state, Action action) async {
     if (action is OnLoginAction) {
       final _user = action.user;
-
-      MkSettings.userId = _user.id;
-
-      await MkRememberMeProvider.set(_user.id);
-
+      await RememberMeProvider.set(_user.id);
       dispatcher(UserUpdateAction(_user));
     }
     return action;
@@ -37,8 +32,7 @@ class AuthBloc extends SimpleBloc<AppState> {
   Future<Action> afterware(DispatchFunction dispatcher, AppState state, Action action) async {
     if (action is OnLogoutAction) {
       await Users.di().logout();
-      await MkRememberMeProvider.clear();
-      MkSettings.userId = null;
+      await RememberMeProvider.clear();
       dispatcher(const BootstrapAsyncInitAction());
     }
     return action;

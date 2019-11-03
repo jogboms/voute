@@ -11,8 +11,8 @@ import 'package:voute/utils/mk_screen_util.dart';
 /// The TextStyles and Colors used for titles, labels, and descriptions. This
 /// InheritedWidget is shared by all of the routes and widgets created for
 /// the Mk app.
-class MkTheme extends InheritedWidget {
-  const MkTheme({Key key, @required Widget child})
+class AppTheme extends InheritedWidget {
+  const AppTheme({Key key, @required Widget child})
       : assert(child != null),
         super(key: key, child: child);
 
@@ -54,7 +54,7 @@ class MkTheme extends InheritedWidget {
   TextStyle get _text18Style => mkFontRegular(18.0);
   TextStyle get _text20Style => mkFontRegular(20.0);
 
-  static MkTheme of(BuildContext context) => context.inheritFromWidgetOfExactType(MkTheme);
+  static AppTheme of(BuildContext context) => context.inheritFromWidgetOfExactType(AppTheme);
 
   ThemeData themeData(ThemeData theme) {
     return ThemeData(
@@ -90,7 +90,7 @@ class MkTheme extends InheritedWidget {
   }
 
   @override
-  bool updateShouldNotify(MkTheme oldWidget) => false;
+  bool updateShouldNotify(AppTheme oldWidget) => false;
 }
 
 const _kTextFieldBorder = OutlineInputBorder(

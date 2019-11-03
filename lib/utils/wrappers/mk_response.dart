@@ -5,12 +5,12 @@ import 'package:http/http.dart' as http;
 import 'package:voute/constants/mk_strings.dart';
 import 'package:voute/environments/environment.dart';
 import 'package:voute/models/main.dart';
-import 'package:voute/utils/mk_exceptions.dart';
+import 'package:voute/utils/wrappers/mk_exceptions.dart';
 
 typedef TransformFunction<T> = T Function(Map<String, dynamic> data);
 
-class MkResponseWrapper<T extends ModelInterface> with ModelInterface {
-  factory MkResponseWrapper(http.Response _response, {TransformFunction<T> onTransform, bool shouldThrow = true}) {
+class MkResponse<T extends ModelInterface> with ModelInterface {
+  factory MkResponse(http.Response _response, {TransformFunction<T> onTransform, bool shouldThrow = true}) {
     final isDev = Environment.di().isDev;
     final status = _Status(_response.statusCode);
     try {
@@ -20,7 +20,7 @@ class MkResponseWrapper<T extends ModelInterface> with ModelInterface {
         throw MkResponseException(status.code, isDev ? _response.reasonPhrase : MkStrings.errorMessage);
       }
 
-      return MkResponseWrapper._(
+      return MkResponse._(
         status: status,
         message: _response.reasonPhrase,
         data: onTransform != null ? onTransform(responseJson["data"]) : null,
@@ -48,12 +48,12 @@ class MkResponseWrapper<T extends ModelInterface> with ModelInterface {
         throw MkResponseException(status.code, message);
       }
 
-      return MkResponseWrapper._(status: status, message: message);
+      return MkResponse._(status: status, message: message);
     }
   }
 
-  factory MkResponseWrapper.mock(T data, [int statusCode = 200]) {
-    return MkResponseWrapper<T>(
+  factory MkResponse.mock(T data, [int statusCode = 200]) {
+    return MkResponse<T>(
       http.Response(
         Model.mapToString(<String, dynamic>{"message": "Awesome", "data": data.toString()}),
         statusCode,
@@ -62,7 +62,7 @@ class MkResponseWrapper<T extends ModelInterface> with ModelInterface {
     );
   }
 
-  MkResponseWrapper._({@required this.status, @required this.message, this.data});
+  MkResponse._({@required this.status, @required this.message, this.data});
 
   final _Status status;
   final String message;

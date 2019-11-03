@@ -2,8 +2,8 @@ import 'dart:math' show max;
 
 import 'package:flutter/material.dart';
 
-class MkPersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
-  const MkPersistentHeaderDelegate({@required this.builder, double height, double minExtent, double maxExtent})
+class FixedPersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
+  const FixedPersistentHeaderDelegate({@required this.builder, double height, double minExtent, double maxExtent})
       : minExtent = height ?? minExtent ?? kTextTabBarHeight,
         maxExtent = height ?? maxExtent ?? kTextTabBarHeight;
 
@@ -26,5 +26,5 @@ class MkPersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
   }
 
   @override
-  bool shouldRebuild(MkPersistentHeaderDelegate oldDelegate) => true;
+  bool shouldRebuild(FixedPersistentHeaderDelegate oldDelegate) => true;
 }
