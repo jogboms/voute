@@ -9,9 +9,9 @@ const Color kPrimaryColor = MkColors.primary;
 const MaterialColor kAccentSwatch = MkColors.base_accent;
 const MaterialColor kPrimarySwatch = MkColors.base_primary;
 
-const Color kHintColor = const Color(0xFFAAAAAA);
-const Color kDividerColor = const Color(0xFFBDBDBD);
-const Color kBorderSideColor = const Color(0x66D1D1D1);
+const Color kHintColor = Color(0xFFAAAAAA);
+const Color kDividerColor = Color(0xFFBDBDBD);
+const Color kBorderSideColor = Color(0x66D1D1D1);
 final Color kBorderSideErrorColor = kAccentSwatch.shade900;
 const Color kTextBaseColor = MkColors.dark;
 const Color kTitleBaseColor = kTextBaseColor;
@@ -26,7 +26,7 @@ const double kBaseScreenWidth = 414.0;
 const double kButtonHeight = 44.0;
 const double kButtonMinWidth = 200.0;
 
-const BorderRadius kBorderRadius = const BorderRadius.all(Radius.circular(4.0));
+const BorderRadius kBorderRadius = BorderRadius.all(Radius.circular(4.0));
 
 class MkBorderSide extends BorderSide {
   const MkBorderSide({

@@ -62,11 +62,11 @@ class DashboardPageState extends State<DashboardPage> with TickerProviderStateMi
   void initState() {
     super.initState();
     _tabViews = [
-      const AccountsPage(key: const PageStorageKey("accounts")),
-      const CardsPage(key: const PageStorageKey("cards")),
-      const HomePage(key: const PageStorageKey("home")),
-      const PeoplePage(key: const PageStorageKey("people")),
-      const MorePage(key: const PageStorageKey("more")),
+      const AccountsPage(key: PageStorageKey("accounts")),
+      const CardsPage(key: PageStorageKey("cards")),
+      const HomePage(key: PageStorageKey("home")),
+      const PeoplePage(key: PageStorageKey("people")),
+      const MorePage(key: PageStorageKey("more")),
     ];
     _controller = TabController(vsync: this, initialIndex: _currentPageIndex, length: _tabViews.length)
       ..addListener(_pageListener);

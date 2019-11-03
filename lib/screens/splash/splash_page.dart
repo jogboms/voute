@@ -35,7 +35,7 @@ class SplashPage extends StatelessWidget {
           children: <Widget>[
             const DecoratedBox(
               decoration: BoxDecoration(
-                gradient: const MkLinearGradient(),
+                gradient: MkLinearGradient(),
               ),
             ),
             Center(

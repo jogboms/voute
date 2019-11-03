@@ -7,7 +7,7 @@ import 'package:voute/models/main.dart';
 import 'package:voute/utils/mk_exception.dart';
 import 'package:voute/utils/mk_settings.dart';
 
-typedef T TransformFunction<T>(dynamic data, String message);
+typedef TransformFunction<T> = T Function(dynamic data, String message);
 
 class NoInternetException extends MkResponseException {
   NoInternetException() : super(HttpStatus.serviceUnavailable, MkStrings.networkError);

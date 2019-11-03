@@ -160,7 +160,7 @@ class MkTheme extends InheritedWidget {
   bool updateShouldNotify(MkTheme oldWidget) => false;
 }
 
-const _kTextFieldBorder = const OutlineInputBorder(
+const _kTextFieldBorder = OutlineInputBorder(
   borderSide: BorderSide.none,
-  borderRadius: const BorderRadius.all(Radius.circular(25)),
+  borderRadius: BorderRadius.all(Radius.circular(25)),
 );

@@ -7,7 +7,7 @@ import 'package:voute/models/user/user.dart';
 
 part 'serializers.g.dart';
 
-@SerializersFor(const [
+@SerializersFor([
   ConfigModel,
   UserModel,
 ])

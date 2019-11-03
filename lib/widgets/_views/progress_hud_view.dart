@@ -5,7 +5,7 @@ import 'package:voute/widgets/_dialogs/error_message_dialog.dart';
 import 'package:voute/widgets/_dialogs/success_message_dialog.dart';
 import 'package:voute/widgets/_partials/mk_loading_spinner.dart';
 
-const Duration _kDuration = const Duration(milliseconds: 3000);
+const Duration _kDuration = Duration(milliseconds: 3000);
 
 class ProgressHudView extends StatelessWidget {
   const ProgressHudView({
