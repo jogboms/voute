@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:voute/constants/mk_colors.dart';
 import 'package:voute/constants/mk_fonts.dart';
 import 'package:voute/constants/mk_images.dart';
-import 'package:voute/utils/mk_linear_gradient.dart';
 import 'package:voute/utils/mk_screen_util.dart';
-import 'package:voute/utils/mk_theme.dart';
+import 'package:voute/utils/ui/mk_linear_gradient.dart';
 import 'package:voute/widgets/_partials/mk_icon_button.dart';
+import 'package:voute/widgets/app_theme.dart';
 
 const double cardItemHeight = 180.0;
 
@@ -62,7 +62,7 @@ class _Item extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = MkTheme.of(context);
+    final theme = AppTheme.of(context);
     final size = sw(48);
 
     return Padding(

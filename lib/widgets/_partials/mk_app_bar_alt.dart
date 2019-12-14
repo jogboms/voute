@@ -1,8 +1,8 @@
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:voute/constants/mk_style.dart';
-import 'package:voute/utils/mk_persistent_header_delegate.dart';
 import 'package:voute/utils/mk_screen_util.dart';
+import 'package:voute/utils/ui/fixed_persistent_header_delegate.dart';
 import 'package:voute/widgets/_partials/mk_icon_button.dart';
 
 class MkSearchBarRow extends StatelessWidget {
@@ -42,7 +42,7 @@ class MkSliverAppBarAlt extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverPersistentHeader(
       pinned: true,
-      delegate: MkPersistentHeaderDelegate(
+      delegate: FixedPersistentHeaderDelegate(
         height: sh(kBaseAppBarHeight) + MkScreenUtil().safeArea.top,
         builder: (context, __, ___) {
           return Material(

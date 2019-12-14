@@ -3,16 +3,13 @@ import 'package:flutter/widgets.dart';
 import 'package:injector/injector.dart';
 import 'package:voute/environments/environment.dart';
 import 'package:voute/models/user/user.dart';
-import 'package:voute/services/_api/config.dart';
-import 'package:voute/services/_api/users.dart';
-import 'package:voute/services/_mocks/config.dart';
-import 'package:voute/services/_mocks/users.dart';
-import 'package:voute/services/config.dart';
-import 'package:voute/services/users.dart';
+import 'package:voute/services/config/main.dart';
+import 'package:voute/services/users/main.dart';
 import 'package:voute/utils/mk_first_time_check.dart';
-import 'package:voute/utils/mk_logger.dart';
-import 'package:voute/utils/mk_remember_me_provider.dart';
 import 'package:voute/utils/mk_version_check.dart';
+import 'package:voute/utils/providers/remember_me_provider.dart';
+import 'package:voute/utils/wrappers/mk_http.dart';
+import 'package:voute/utils/wrappers/mk_logger.dart';
 
 Future<BootstrapModel> bootstrap(Env env, [bool isTestMode = false]) async {
   final _env = Environment(env);
@@ -20,7 +17,11 @@ Future<BootstrapModel> bootstrap(Env env, [bool isTestMode = false]) async {
   MkLogger.init(_env.isDev);
 
   Injector.appInstance
-    ..registerSingleton<Environment>((_) => Environment(env))
+    ..registerSingleton<Environment>((_) => _env)
+    ..registerSingleton<MkHttp>((_) {
+      final domain = _env.isDev ? "https://google.com" : "https://google.com";
+      return MkHttp(baseUrl: domain + "/api", isDevelopment: _env.isDev);
+    })
     ..registerSingleton<Users>((_) => _env.isMock ? UsersMockImpl() : UsersImpl())
     ..registerSingleton<Config>((_) => _env.isMock ? ConfigMockImpl() : ConfigImpl());
 
@@ -34,7 +35,7 @@ Future<BootstrapModel> bootstrap(Env env, [bool isTestMode = false]) async {
     }
 
     UserModel user;
-    final model = await MkRememberMeProvider.get();
+    final model = await RememberMeProvider.get();
     if (model != null) {
       user = await Users.di().fetch(model.id);
     }

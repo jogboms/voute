@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:voute/constants/mk_colors.dart';
 import 'package:voute/screens/cards/_partials/card_item.dart';
 import 'package:voute/utils/mk_screen_util.dart';
-import 'package:voute/utils/mk_sliver_separator_builder_delegate.dart';
+import 'package:voute/utils/ui/sliver_separator_builder_delegate.dart';
 import 'package:voute/widgets/_partials/mk_app_bar_alt.dart';
 import 'package:voute/widgets/_partials/mk_icon_button.dart';
 
@@ -32,7 +32,7 @@ class _CardsPageState extends State<CardsPage> {
         SliverPadding(
           padding: EdgeInsets.symmetric(horizontal: sw(16), vertical: sh(16)),
           sliver: SliverList(
-            delegate: MkSliverSeparatorBuilderDelegate(
+            delegate: SliverSeparatorBuilderDelegate(
               builder: (BuildContext context, int index) {
                 return CardItem(index: index);
               },

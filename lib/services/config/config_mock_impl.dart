@@ -3,7 +3,7 @@ import 'dart:math';
 
 import 'package:voute/models/config.dart';
 import 'package:voute/models/mock.dart';
-import 'package:voute/services/config.dart';
+import 'package:voute/services/config/config.dart';
 
 class ConfigMockImpl extends Config {
   @override

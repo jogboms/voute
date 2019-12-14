@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
-import 'package:voute/utils/mk_logger.dart';
-import 'package:voute/utils/mk_prefs.dart';
+import 'package:voute/utils/wrappers/mk_logger.dart';
+import 'package:voute/utils/wrappers/mk_prefs.dart';
 
-class MkRememberMeProvider {
+class RememberMeProvider {
   static Future<_RememberMeModel> get() async {
     try {
       final json = await MkPrefs.getMap(_persistedIdToken);

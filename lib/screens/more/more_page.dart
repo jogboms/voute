@@ -2,9 +2,9 @@ import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:voute/constants/mk_style.dart';
 import 'package:voute/utils/mk_screen_util.dart';
-import 'package:voute/utils/mk_sliver_separator_builder_delegate.dart';
-import 'package:voute/utils/mk_theme.dart';
+import 'package:voute/utils/ui/sliver_separator_builder_delegate.dart';
 import 'package:voute/widgets/_partials/mk_app_bar_alt.dart';
+import 'package:voute/widgets/app_theme.dart';
 
 class MorePage extends StatefulWidget {
   const MorePage({Key key}) : super(key: key);
@@ -23,14 +23,14 @@ class _MorePageState extends State<MorePage> {
           child: SizedBox(
             height: sh(kBaseAppBarHeight),
             child: Center(
-              child: Text("More", style: MkTheme.of(context).subhead4Medium),
+              child: Text("More", style: AppTheme.of(context).subhead4Medium),
             ),
           ),
         ),
         SliverPadding(
           padding: EdgeInsets.symmetric(horizontal: sw(16), vertical: sh(16)),
           sliver: SliverList(
-            delegate: MkSliverSeparatorBuilderDelegate(
+            delegate: SliverSeparatorBuilderDelegate(
               builder: (BuildContext context, int index) {
                 return _MenuItem();
               },
@@ -53,7 +53,7 @@ class _MenuItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = MkTheme.of(context);
+    final theme = AppTheme.of(context);
 
     return Material(
       elevation: 4,

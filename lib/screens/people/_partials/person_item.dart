@@ -1,8 +1,8 @@
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:voute/utils/mk_screen_util.dart';
-import 'package:voute/utils/mk_theme.dart';
 import 'package:voute/widgets/_partials/mk_icon_button.dart';
+import 'package:voute/widgets/app_theme.dart';
 
 class PersonItem extends StatelessWidget {
   const PersonItem({Key key}) : super(key: key);
@@ -23,7 +23,7 @@ class PersonItem extends StatelessWidget {
               SizedBox(width: sh(16)),
               CircleAvatar(child: Text("A")),
               SizedBox(width: sh(16)),
-              Expanded(child: Text("Agbeke", style: MkTheme.of(context).subhead1Medium)),
+              Expanded(child: Text("Agbeke", style: AppTheme.of(context).subhead1Medium)),
               MkIconButton(
                 icon: FeatherIcons.moreHorizontal,
                 onPressed: () {},

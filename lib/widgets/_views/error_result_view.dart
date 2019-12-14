@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:voute/constants/mk_colors.dart';
 import 'package:voute/constants/mk_strings.dart';
 import 'package:voute/utils/mk_screen_util.dart';
-import 'package:voute/utils/mk_theme.dart';
+import 'package:voute/widgets/app_theme.dart';
 
 class ErrorResultView extends StatelessWidget {
   const ErrorResultView({Key key, this.error}) : super(key: key);
@@ -12,7 +12,7 @@ class ErrorResultView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MkTheme theme = MkTheme.of(context);
+    final AppTheme theme = AppTheme.of(context);
     return Opacity(
       opacity: .5,
       child: Column(

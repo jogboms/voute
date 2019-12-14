@@ -1,8 +1,8 @@
 import 'dart:async' show TimeoutException;
 import 'dart:io';
 
-import 'package:voute/utils/mk_exceptions.dart';
 import 'package:voute/utils/mk_settings.dart';
+import 'package:voute/utils/wrappers/mk_exceptions.dart';
 
 class MkStrings {
   static const String appName = "Voute";

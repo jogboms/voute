@@ -1,6 +1,6 @@
 import 'package:colorize_lumberdash/colorize_lumberdash.dart';
 import 'package:lumberdash/lumberdash.dart';
-import 'package:voute/utils/mk_exceptions.dart';
+import 'package:voute/utils/wrappers/mk_exceptions.dart';
 
 class MkLogger {
   static void init(bool isDebug) => putLumberdashToWork(withClients: [ColorizeLumberdash()]);

@@ -9,12 +9,12 @@ import 'package:voute/rebloc/actions/bootstrap.dart';
 import 'package:voute/rebloc/states/app.dart';
 import 'package:voute/rebloc/view_models/bootstrap.dart';
 import 'package:voute/screens/dashboard/dashboard_page.dart';
-import 'package:voute/utils/mk_linear_gradient.dart';
 import 'package:voute/utils/mk_screen_util.dart';
-import 'package:voute/utils/mk_status_bar.dart';
-import 'package:voute/utils/mk_theme.dart';
 import 'package:voute/utils/mk_version_check.dart';
+import 'package:voute/utils/ui/mk_linear_gradient.dart';
 import 'package:voute/widgets/_partials/mk_loading_spinner.dart';
+import 'package:voute/widgets/_partials/mk_status_bar.dart';
+import 'package:voute/widgets/app_theme.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({
@@ -26,7 +26,7 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MkTheme theme = MkTheme.of(context);
+    final AppTheme theme = AppTheme.of(context);
     return MkStatusBar(
       brightness: Brightness.light,
       child: Scaffold(

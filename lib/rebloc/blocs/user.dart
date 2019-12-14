@@ -5,7 +5,7 @@ import 'package:voute/constants/mk_strings.dart';
 import 'package:voute/rebloc/actions/user.dart';
 import 'package:voute/rebloc/states/app.dart';
 import 'package:voute/rebloc/states/user.dart';
-import 'package:voute/services/users.dart';
+import 'package:voute/services/users/main.dart';
 
 class UserBloc extends SimpleBloc<AppState> {
   @override

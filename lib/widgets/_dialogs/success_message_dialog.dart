@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:voute/utils/mk_screen_util.dart';
-import 'package:voute/utils/mk_theme.dart';
+import 'package:voute/widgets/app_theme.dart';
 
 class SuccessMessageDialog extends StatelessWidget {
   const SuccessMessageDialog({Key key, @required this.message}) : super(key: key);
@@ -9,7 +9,7 @@ class SuccessMessageDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MkTheme theme = MkTheme.of(context);
+    final AppTheme theme = AppTheme.of(context);
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: sw(64)),
       child: Center(
